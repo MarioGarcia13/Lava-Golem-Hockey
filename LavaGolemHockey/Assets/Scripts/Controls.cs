@@ -35,6 +35,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""d371b6b0-ca4a-4bea-8cd0-293ef3147a48"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -103,6 +112,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""LSMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7cf46fd-0fcb-4101-a274-cda91c3c80a3"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""520285a8-2ea8-4d29-ade5-e785f9b49714"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -195,6 +226,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // LeftControls
         m_LeftControls = asset.FindActionMap("LeftControls", throwIfNotFound: true);
         m_LeftControls_LSMove = m_LeftControls.FindAction("LSMove", throwIfNotFound: true);
+        m_LeftControls_Select = m_LeftControls.FindAction("Select", throwIfNotFound: true);
         // RightControls
         m_RightControls = asset.FindActionMap("RightControls", throwIfNotFound: true);
         m_RightControls_RSMove = m_RightControls.FindAction("RSMove", throwIfNotFound: true);
@@ -260,11 +292,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_LeftControls;
     private List<ILeftControlsActions> m_LeftControlsActionsCallbackInterfaces = new List<ILeftControlsActions>();
     private readonly InputAction m_LeftControls_LSMove;
+    private readonly InputAction m_LeftControls_Select;
     public struct LeftControlsActions
     {
         private @Controls m_Wrapper;
         public LeftControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @LSMove => m_Wrapper.m_LeftControls_LSMove;
+        public InputAction @Select => m_Wrapper.m_LeftControls_Select;
         public InputActionMap Get() { return m_Wrapper.m_LeftControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -277,6 +311,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LSMove.started += instance.OnLSMove;
             @LSMove.performed += instance.OnLSMove;
             @LSMove.canceled += instance.OnLSMove;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         private void UnregisterCallbacks(ILeftControlsActions instance)
@@ -284,6 +321,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LSMove.started -= instance.OnLSMove;
             @LSMove.performed -= instance.OnLSMove;
             @LSMove.canceled -= instance.OnLSMove;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         public void RemoveCallbacks(ILeftControlsActions instance)
@@ -350,6 +390,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface ILeftControlsActions
     {
         void OnLSMove(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
     public interface IRightControlsActions
     {
