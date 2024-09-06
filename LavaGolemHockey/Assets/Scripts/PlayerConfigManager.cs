@@ -28,6 +28,11 @@ public class PlayerConfigManager : MonoBehaviour
         }
     }
 
+    public List<PlayerConfiguration> GetPlayerConfigs()
+    {
+        return playerConfigs;
+    }
+
     public void ReadyPlayer(int index)
     {
         playerConfigs[index].IsReady = true;
