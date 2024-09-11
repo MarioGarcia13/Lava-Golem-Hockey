@@ -95,6 +95,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3344631f-c8d8-4ca8-bf09-38dee489f479
     m_ActionName: RightControls/RSMove[/DualSenseGamepadHID/rightStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b1709bcd-1aa8-4d35-8897-c16e4e327146
+    m_ActionName: LeftControls/Join[/DualSenseGamepadHID/start,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: RightControls
@@ -301,6 +305,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3344631f-c8d8-4ca8-bf09-38dee489f479
     m_ActionName: RightControls/RSMove[/DualSenseGamepadHID/rightStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b1709bcd-1aa8-4d35-8897-c16e4e327146
+    m_ActionName: LeftControls/Join[/DualSenseGamepadHID/start,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: LeftControls

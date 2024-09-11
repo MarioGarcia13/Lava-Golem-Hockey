@@ -35,6 +35,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Join"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1709bcd-1aa8-4d35-8897-c16e4e327146"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -103,6 +112,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""LSMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f20caea9-a9a6-4e55-a3f8-8d92d6ad89c1"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""955cace4-f80a-4e7a-b9fb-ff094333b3e4"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -195,6 +226,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // LeftControls
         m_LeftControls = asset.FindActionMap("LeftControls", throwIfNotFound: true);
         m_LeftControls_LSMove = m_LeftControls.FindAction("LSMove", throwIfNotFound: true);
+        m_LeftControls_Join = m_LeftControls.FindAction("Join", throwIfNotFound: true);
         // RightControls
         m_RightControls = asset.FindActionMap("RightControls", throwIfNotFound: true);
         m_RightControls_RSMove = m_RightControls.FindAction("RSMove", throwIfNotFound: true);
@@ -260,11 +292,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_LeftControls;
     private List<ILeftControlsActions> m_LeftControlsActionsCallbackInterfaces = new List<ILeftControlsActions>();
     private readonly InputAction m_LeftControls_LSMove;
+    private readonly InputAction m_LeftControls_Join;
     public struct LeftControlsActions
     {
         private @Controls m_Wrapper;
         public LeftControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @LSMove => m_Wrapper.m_LeftControls_LSMove;
+        public InputAction @Join => m_Wrapper.m_LeftControls_Join;
         public InputActionMap Get() { return m_Wrapper.m_LeftControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -277,6 +311,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LSMove.started += instance.OnLSMove;
             @LSMove.performed += instance.OnLSMove;
             @LSMove.canceled += instance.OnLSMove;
+            @Join.started += instance.OnJoin;
+            @Join.performed += instance.OnJoin;
+            @Join.canceled += instance.OnJoin;
         }
 
         private void UnregisterCallbacks(ILeftControlsActions instance)
@@ -284,6 +321,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LSMove.started -= instance.OnLSMove;
             @LSMove.performed -= instance.OnLSMove;
             @LSMove.canceled -= instance.OnLSMove;
+            @Join.started -= instance.OnJoin;
+            @Join.performed -= instance.OnJoin;
+            @Join.canceled -= instance.OnJoin;
         }
 
         public void RemoveCallbacks(ILeftControlsActions instance)
@@ -350,6 +390,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface ILeftControlsActions
     {
         void OnLSMove(InputAction.CallbackContext context);
+        void OnJoin(InputAction.CallbackContext context);
     }
     public interface IRightControlsActions
     {
