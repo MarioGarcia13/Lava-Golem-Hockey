@@ -44,6 +44,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootTackle"",
+                    ""type"": ""Button"",
+                    ""id"": ""a76a9e39-3c3b-421c-b700-cbe3f52aaa64"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pass"",
+                    ""type"": ""Button"",
+                    ""id"": ""11607ce9-2d10-4b0f-a12f-d38b36b66231"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +150,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b8e76a0-a861-4c73-89cc-5c0c85d8d576"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootTackle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c430829c-e1c3-4352-a536-834a2205814f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pass"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -227,6 +267,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_LeftControls = asset.FindActionMap("LeftControls", throwIfNotFound: true);
         m_LeftControls_LSMove = m_LeftControls.FindAction("LSMove", throwIfNotFound: true);
         m_LeftControls_Join = m_LeftControls.FindAction("Join", throwIfNotFound: true);
+        m_LeftControls_ShootTackle = m_LeftControls.FindAction("ShootTackle", throwIfNotFound: true);
+        m_LeftControls_Pass = m_LeftControls.FindAction("Pass", throwIfNotFound: true);
         // RightControls
         m_RightControls = asset.FindActionMap("RightControls", throwIfNotFound: true);
         m_RightControls_RSMove = m_RightControls.FindAction("RSMove", throwIfNotFound: true);
@@ -293,12 +335,16 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<ILeftControlsActions> m_LeftControlsActionsCallbackInterfaces = new List<ILeftControlsActions>();
     private readonly InputAction m_LeftControls_LSMove;
     private readonly InputAction m_LeftControls_Join;
+    private readonly InputAction m_LeftControls_ShootTackle;
+    private readonly InputAction m_LeftControls_Pass;
     public struct LeftControlsActions
     {
         private @Controls m_Wrapper;
         public LeftControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @LSMove => m_Wrapper.m_LeftControls_LSMove;
         public InputAction @Join => m_Wrapper.m_LeftControls_Join;
+        public InputAction @ShootTackle => m_Wrapper.m_LeftControls_ShootTackle;
+        public InputAction @Pass => m_Wrapper.m_LeftControls_Pass;
         public InputActionMap Get() { return m_Wrapper.m_LeftControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -314,6 +360,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Join.started += instance.OnJoin;
             @Join.performed += instance.OnJoin;
             @Join.canceled += instance.OnJoin;
+            @ShootTackle.started += instance.OnShootTackle;
+            @ShootTackle.performed += instance.OnShootTackle;
+            @ShootTackle.canceled += instance.OnShootTackle;
+            @Pass.started += instance.OnPass;
+            @Pass.performed += instance.OnPass;
+            @Pass.canceled += instance.OnPass;
         }
 
         private void UnregisterCallbacks(ILeftControlsActions instance)
@@ -324,6 +376,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Join.started -= instance.OnJoin;
             @Join.performed -= instance.OnJoin;
             @Join.canceled -= instance.OnJoin;
+            @ShootTackle.started -= instance.OnShootTackle;
+            @ShootTackle.performed -= instance.OnShootTackle;
+            @ShootTackle.canceled -= instance.OnShootTackle;
+            @Pass.started -= instance.OnPass;
+            @Pass.performed -= instance.OnPass;
+            @Pass.canceled -= instance.OnPass;
         }
 
         public void RemoveCallbacks(ILeftControlsActions instance)
@@ -391,6 +449,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnLSMove(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
+        void OnShootTackle(InputAction.CallbackContext context);
+        void OnPass(InputAction.CallbackContext context);
     }
     public interface IRightControlsActions
     {

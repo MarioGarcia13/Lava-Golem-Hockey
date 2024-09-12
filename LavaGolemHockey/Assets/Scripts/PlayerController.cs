@@ -19,18 +19,15 @@ public class PlayerController : MonoBehaviour
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("LeftControls");
     }
-
     private void OnEnable()
     {
         move = player.FindAction("LSMove");
         player.Enable();
     }
-
     private void OnDisable()
     {
         player.Disable();
     }
-
     private void Update()
     {
         if (this == null)
@@ -45,4 +42,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnRSMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
 
+    public void OnPass(InputAction.CallbackContext ctx)
+    {
+        //when the player has the puck
+            //set a force for the puck
+            //shoot the puck in the direction of teammate
+            //gaurantee that the puck will reach the teammate unless intercepted
+
+    }
+
+    public void OnShootTackle(InputAction.CallbackContext ctx)
+    {
+        //When the player has the puck
+            //get the direction of the player that has the puck
+            //add force to the puck
+            //
+    }
 }
