@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private Puck puckObject;
     private InputActionAsset inputAsset;
     private InputActionMap player;
     private InputAction move;
+    private bool hasPuck = false;
 
     [Range(1f, 200f)]
     public float speed = 5f;
@@ -18,6 +21,11 @@ public class PlayerController : MonoBehaviour
     {
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("LeftControls");
+
+        if (this == null)
+        {
+            return;
+        }
     }
     private void OnEnable()
     {
@@ -30,11 +38,6 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (this == null)
-        {
-            return;
-        }
-
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
     }
 
@@ -44,6 +47,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnPass(InputAction.CallbackContext ctx)
     {
+        if (hasPuck)
+        {
+
+        }
+
         //when the player has the puck
             //set a force for the puck
             //shoot the puck in the direction of teammate
