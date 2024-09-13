@@ -134,7 +134,7 @@
                 {
                     "name": "",
                     "id": "7b8e76a0-a861-4c73-89cc-5c0c85d8d576",
-                    "path": "",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -145,7 +145,7 @@
                 {
                     "name": "",
                     "id": "c430829c-e1c3-4352-a536-834a2205814f",
-                    "path": "",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -167,6 +167,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Pass",
+                    "type": "Button",
+                    "id": "6357344b-6c62-4d83-bb83-acfd8557ff67",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShootTackle",
+                    "type": "Button",
+                    "id": "c0ff47a2-c567-4b38-af03-418b30240170",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -235,6 +253,28 @@
                     "action": "RSMove",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0a8c896c-61a1-47ce-8657-ff0a7a7b6960",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pass",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a781808-666e-4e1b-bb89-7d6461ef168e",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootTackle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

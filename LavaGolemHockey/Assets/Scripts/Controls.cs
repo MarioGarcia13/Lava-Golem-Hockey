@@ -156,7 +156,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7b8e76a0-a861-4c73-89cc-5c0c85d8d576"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -167,7 +167,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c430829c-e1c3-4352-a536-834a2205814f"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -189,6 +189,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pass"",
+                    ""type"": ""Button"",
+                    ""id"": ""6357344b-6c62-4d83-bb83-acfd8557ff67"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootTackle"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0ff47a2-c567-4b38-af03-418b30240170"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -257,6 +275,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""RSMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a8c896c-61a1-47ce-8657-ff0a7a7b6960"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pass"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a781808-666e-4e1b-bb89-7d6461ef168e"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootTackle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -272,6 +312,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // RightControls
         m_RightControls = asset.FindActionMap("RightControls", throwIfNotFound: true);
         m_RightControls_RSMove = m_RightControls.FindAction("RSMove", throwIfNotFound: true);
+        m_RightControls_Pass = m_RightControls.FindAction("Pass", throwIfNotFound: true);
+        m_RightControls_ShootTackle = m_RightControls.FindAction("ShootTackle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -404,11 +446,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_RightControls;
     private List<IRightControlsActions> m_RightControlsActionsCallbackInterfaces = new List<IRightControlsActions>();
     private readonly InputAction m_RightControls_RSMove;
+    private readonly InputAction m_RightControls_Pass;
+    private readonly InputAction m_RightControls_ShootTackle;
     public struct RightControlsActions
     {
         private @Controls m_Wrapper;
         public RightControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @RSMove => m_Wrapper.m_RightControls_RSMove;
+        public InputAction @Pass => m_Wrapper.m_RightControls_Pass;
+        public InputAction @ShootTackle => m_Wrapper.m_RightControls_ShootTackle;
         public InputActionMap Get() { return m_Wrapper.m_RightControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -421,6 +467,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @RSMove.started += instance.OnRSMove;
             @RSMove.performed += instance.OnRSMove;
             @RSMove.canceled += instance.OnRSMove;
+            @Pass.started += instance.OnPass;
+            @Pass.performed += instance.OnPass;
+            @Pass.canceled += instance.OnPass;
+            @ShootTackle.started += instance.OnShootTackle;
+            @ShootTackle.performed += instance.OnShootTackle;
+            @ShootTackle.canceled += instance.OnShootTackle;
         }
 
         private void UnregisterCallbacks(IRightControlsActions instance)
@@ -428,6 +480,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @RSMove.started -= instance.OnRSMove;
             @RSMove.performed -= instance.OnRSMove;
             @RSMove.canceled -= instance.OnRSMove;
+            @Pass.started -= instance.OnPass;
+            @Pass.performed -= instance.OnPass;
+            @Pass.canceled -= instance.OnPass;
+            @ShootTackle.started -= instance.OnShootTackle;
+            @ShootTackle.performed -= instance.OnShootTackle;
+            @ShootTackle.canceled -= instance.OnShootTackle;
         }
 
         public void RemoveCallbacks(IRightControlsActions instance)
@@ -455,5 +513,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IRightControlsActions
     {
         void OnRSMove(InputAction.CallbackContext context);
+        void OnPass(InputAction.CallbackContext context);
+        void OnShootTackle(InputAction.CallbackContext context);
     }
 }
