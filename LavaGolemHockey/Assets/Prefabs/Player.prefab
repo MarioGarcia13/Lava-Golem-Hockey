@@ -49,7 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5915bce6cf6b42a4eb0ca908b8df9452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puckPrefab: {fileID: 5916216987702780258}
+  puckClass: {fileID: 0}
+  puckVisualPrefab: {fileID: 5916216987702780258}
+  puckPrefab: {fileID: 4339397082498492783, guid: 2a11f206270a4b945a535df7f2cfaa17,
+    type: 3}
   speed: 40
 --- !u!114 &2497036763228730037
 MonoBehaviour:
@@ -110,7 +113,19 @@ MonoBehaviour:
     m_ActionId: 11607ce9-2d10-4b0f-a12f-d38b36b66231
     m_ActionName: LeftControls/Pass[/DualShock4GamepadHID/leftShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6357344b-6c62-4d83-bb83-acfd8557ff67
     m_ActionName: RightControls/Pass[/DualShock4GamepadHID/rightShoulder]
   - m_PersistentCalls:
@@ -358,7 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5915bce6cf6b42a4eb0ca908b8df9452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puckPrefab: {fileID: 7075791742241175449}
+  puckClass: {fileID: 0}
+  puckVisualPrefab: {fileID: 7075791742241175449}
+  puckPrefab: {fileID: 4339397082498492783, guid: 2a11f206270a4b945a535df7f2cfaa17,
+    type: 3}
   speed: 40
 --- !u!114 &1977222003114752138
 MonoBehaviour:
@@ -418,7 +436,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8071587772448713073}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnPass
+        m_MethodName: OnLeftPass
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -541,7 +559,7 @@ Transform:
   m_GameObject: {fileID: 7075791742241175449}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: -0.76630896, z: 0}
+  m_LocalPosition: {x: 1.12, y: -0.76630896, z: 0}
   m_LocalScale: {x: 0.6184778, y: 0.1315398, z: 0.6184778}
   m_ConstrainProportionsScale: 0
   m_Children: []

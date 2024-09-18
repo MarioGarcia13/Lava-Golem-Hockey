@@ -1090,6 +1090,8 @@ MonoBehaviour:
   ScoreDisplay1: {fileID: 1659435996}
   ScoreDisplay2: {fileID: 428617216}
   RoundNum: {fileID: 1246812079}
+  score1: 0
+  score2: 0
   roundNum: 1
 --- !u!114 &933979237
 MonoBehaviour:
@@ -1146,7 +1148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &960333153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,7 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1962,7 +1964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1901786367
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2067,7 +2069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &2119502576
 BoxCollider:
   m_ObjectHideFlags: 0

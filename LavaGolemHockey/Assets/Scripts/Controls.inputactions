@@ -33,12 +33,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pass",
+                    "name": "LeftPass",
                     "type": "Button",
                     "id": "11607ce9-2d10-4b0f-a12f-d38b36b66231",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 }
             ],
@@ -149,7 +149,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pass",
+                    "action": "LeftPass",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b581ccd-4324-4cc5-aaf2-d3fb244bde91",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftPass",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -169,7 +180,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Pass",
+                    "name": "RightPass",
                     "type": "Button",
                     "id": "6357344b-6c62-4d83-bb83-acfd8557ff67",
                     "expectedControlType": "Button",
@@ -261,7 +272,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pass",
+                    "action": "RightPass",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

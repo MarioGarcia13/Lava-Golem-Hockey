@@ -6,7 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public Puck puckClass;
+    public GameObject puckVisualPrefab;
     public GameObject puckPrefab;
+    public GameObject test;
 
     private InputActionAsset inputAsset;
     private InputActionMap player;
@@ -22,8 +25,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        puckClass = GetComponent<Puck>();
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("LeftControls");
+
+        if (test == null)
+        {
+            return;
+        }
 
         if (this == null)
         {
@@ -49,7 +58,7 @@ public class PlayerController : MonoBehaviour
         {
             hasPuck = true;
             Destroy(collision.gameObject);
-            puckPrefab.SetActive(true);
+            puckVisualPrefab.SetActive(true);
         }
     }
 
@@ -57,12 +66,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnRSMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
 
-    public void OnPass(InputAction.CallbackContext ctx)
+    public void OnLeftPass(InputAction.CallbackContext ctx)
     {
 
         if (hasPuck)
         {
-            //Debug.Log("Pass Puck");
+            
+            puckVisualPrefab.SetActive(false);
+            test = Instantiate(puckPrefab, new Vector3 (0,0,0), transform.rotation);
+            puckClass.shootPuck();
+
+            Debug.Log("Pass Puck");
+            hasPuck = false;
         }
 
         //when the player has the puck
