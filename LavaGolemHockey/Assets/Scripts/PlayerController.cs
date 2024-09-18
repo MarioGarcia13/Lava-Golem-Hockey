@@ -6,11 +6,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private Puck puckObject;
+    public GameObject puckPrefab;
+
     private InputActionAsset inputAsset;
     private InputActionMap player;
     private InputAction move;
-    private bool hasPuck = false;
+
+    [SerializeField]
+    static public bool hasPuck = false;
 
     [Range(1f, 200f)]
     public float speed = 5f;
@@ -40,6 +43,15 @@ public class PlayerController : MonoBehaviour
     {
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Puck")
+        {
+            hasPuck = true;
+            Destroy(collision.gameObject);
+            puckPrefab.SetActive(true);
+        }
+    }
 
     public void OnLSMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
 
@@ -47,16 +59,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnPass(InputAction.CallbackContext ctx)
     {
+
         if (hasPuck)
         {
-
+            //Debug.Log("Pass Puck");
         }
 
         //when the player has the puck
-            //set a force for the puck
+            //instantiate puck in front of player
+            //set a force for the puck s
             //shoot the puck in the direction of teammate
             //gaurantee that the puck will reach the teammate unless intercepted
-
     }
 
     public void OnShootTackle(InputAction.CallbackContext ctx)

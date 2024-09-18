@@ -10,12 +10,19 @@ public class Puck : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
+        
     }
-
 
     void Update()
     {
         
+    }
+
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 10, 100, 50), "Push Puck"))
+        {
+            rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
+        }
     }
 }
