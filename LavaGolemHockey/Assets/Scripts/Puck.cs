@@ -13,6 +13,28 @@ public class Puck : MonoBehaviour
         
     }
 
+    IEnumerator delayTimer()
+    {
+        //increase score depending on which goal was scored on
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Goal1")
+        {
+            //score1++
+            StartCoroutine(delayTimer());
+        }
+
+        if (other.gameObject.tag == "Goal2")
+        {
+            //score2++
+            StartCoroutine(delayTimer());
+        }
+    }
+
     void Update()
     {
         
@@ -20,9 +42,21 @@ public class Puck : MonoBehaviour
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(10, 10, 100, 50), "Push Puck"))
+        if (GUI.Button(new Rect(10, 10, 100, 30), "Forward"))
         {
             rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
+        }
+        if (GUI.Button(new Rect(10, 50, 100, 30), "Up"))
+        {
+            rb.AddForce(new Vector3(0f, 0f, force), ForceMode.Impulse);
+        }
+        if (GUI.Button(new Rect(10, 90, 100, 30), "Down"))
+        {
+            rb.AddForce(new Vector3(0f, 0f, -force), ForceMode.Impulse);
+        }
+        if (GUI.Button(new Rect(10, 130, 100, 30), "Backwards"))
+        {
+            rb.AddForce(new Vector3(-force, 0f, 0f), ForceMode.Impulse);
         }
     }
 }
