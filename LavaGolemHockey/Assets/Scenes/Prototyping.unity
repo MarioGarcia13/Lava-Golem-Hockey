@@ -192,7 +192,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -7691767826038875183, guid: e7ef373aaecef9f45b59d673a5eb55bd,
       type: 3}
-  m_PlayerPrefab: {fileID: 1456757844343125277, guid: c9da5804fcc63734e9712945a20f9f01,
+  m_PlayerPrefab: {fileID: 4648685926570822782, guid: ccc2d0d4bacda3745bf2bd0ce5ba3575,
     type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
@@ -233,9 +233,6 @@ MonoBehaviour:
   players: []
   startingPoints:
   - {fileID: 1356938889}
-  - {fileID: 1356938889}
-  - {fileID: 1862634907}
-  - {fileID: 1862634907}
   - {fileID: 1862634907}
 --- !u!1 &330585543
 GameObject:

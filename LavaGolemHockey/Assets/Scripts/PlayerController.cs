@@ -6,43 +6,46 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Puck puckClass;
-    public GameObject puckVisualPrefab;
-    public GameObject puckPrefab;
-    public GameObject test;
+    //Puck Variables
+    //public Puck puckClass;
+    //public GameObject puckVisualPrefab;
+    //public GameObject puckPrefab;
+    //public GameObject test;
 
+    //Input Variables
     private InputActionAsset inputAsset;
     private InputActionMap player;
-    private InputAction move;
+    private InputAction moveLeft;
+    private InputAction moveRight;
 
+    //Player Variables
+    private GameObject leftPlayer;
+    private GameObject rightPlayer;
     [SerializeField]
     static public bool hasPuck = false;
-
     [Range(1f, 200f)]
-    public float speed = 5f;
-
-    private Vector2 movementInput;
+    public float speed = 10f;
+    private Vector2 movementInputLeft;
+    private Vector2 movementInputRight;
 
     private void Awake()
     {
-        puckClass = GetComponent<Puck>();
+        //puckClass = GetComponent<Puck>();
+
+
         inputAsset = this.GetComponent<PlayerInput>().actions;
-        player = inputAsset.FindActionMap("LeftControls");
+        player = inputAsset.FindActionMap("PlayerControls");
 
-        if (test == null)
-        {
-            return;
-        }
+        leftPlayer = GameObject.FindGameObjectWithTag("left");
+        rightPlayer = GameObject.FindGameObjectWithTag("right");
 
-        if (this == null)
-        {
-            return;
-        }
     }
     private void OnEnable()
     {
-        move = player.FindAction("LSMove");
+        moveLeft = player.FindAction("LSMove");
+        moveRight = player.FindAction("RSMove");
         player.Enable();
+
     }
     private void OnDisable()
     {
@@ -50,36 +53,25 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
+        leftPlayer.transform.Translate(new Vector3(movementInputLeft.x, 0, movementInputLeft.y) * speed * Time.deltaTime);
+        rightPlayer.transform.Translate(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Puck")
-        {
-            hasPuck = true;
-            Destroy(collision.gameObject);
-            puckVisualPrefab.SetActive(true);
-        }
+        //if (collision.gameObject.tag == "Puck")
+        //{
+            //hasPuck = true;
+            //Destroy(collision.gameObject);
+            //puckVisualPrefab.SetActive(true);
+        //}
     }
 
-    public void OnLSMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
+    public void OnLSMove(InputAction.CallbackContext ctx) => movementInputLeft = ctx.ReadValue<Vector2>();
 
-    public void OnRSMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
+    public void OnRSMove(InputAction.CallbackContext ctx) => movementInputRight = ctx.ReadValue<Vector2>();
 
     public void OnLeftPass(InputAction.CallbackContext ctx)
     {
-
-        if (hasPuck)
-        {
-            
-            puckVisualPrefab.SetActive(false);
-            test = Instantiate(puckPrefab, new Vector3 (0,0,0), transform.rotation);
-            puckClass.shootPuck();
-
-            Debug.Log("Pass Puck");
-            hasPuck = false;
-        }
-
         //when the player has the puck
             //instantiate puck in front of player
             //set a force for the puck s
