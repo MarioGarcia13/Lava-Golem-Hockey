@@ -8,15 +8,16 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private List<PlayerInput> players = new List<PlayerInput>();
     [SerializeField]
-    private List<Transform> startingPoints;
-    
-    //private List<LayerMask> playerLayers;
-
+    private List<Transform> startingPoints = new List<Transform>();
     private PlayerInputManager playerInputManager;
+    public Transform P1Spawn;
+    public Transform P2Spawn;
 
     private void Awake()
     {
         playerInputManager = FindObjectOfType<PlayerInputManager>();
+        startingPoints.Add(P1Spawn);
+        startingPoints.Add(P2Spawn);
     }
 
     private void OnEnable()
@@ -32,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     public void AddPlayer(PlayerInput player)
     {
         players.Add(player);
+        Debug.Log(startingPoints[0].position);
         Debug.Log(players.Count);
 
         //Transform playerParent = player.transform.parent;

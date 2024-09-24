@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5915bce6cf6b42a4eb0ca908b8df9452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftPlayer: {fileID: 3249914283148156245}
+  rightPlayer: {fileID: 3188843055890904921}
   speed: 15
 --- !u!114 &4881598820745756073
 MonoBehaviour:

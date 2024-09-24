@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     private InputAction moveRight;
 
     //Player Variables
-    private GameObject leftPlayer;
-    private GameObject rightPlayer;
+    public GameObject leftPlayer;
+    public GameObject rightPlayer;
     [SerializeField]
     static public bool hasPuck = false;
     [Range(1f, 200f)]
@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("PlayerControls");
 
-        leftPlayer = GameObject.FindGameObjectWithTag("left");
-        rightPlayer = GameObject.FindGameObjectWithTag("right");
+        //leftPlayer = GameObject.FindGameObjectWithTag("left");
+        //rightPlayer = GameObject.FindGameObjectWithTag("right");
 
     }
     private void OnEnable()
