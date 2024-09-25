@@ -18,11 +18,15 @@ public class PlayerController : MonoBehaviour
     private InputAction moveLeft;
     private InputAction moveRight;
 
+
     //Player Variables
     public GameObject leftPlayer;
     public GameObject rightPlayer;
     [SerializeField]
-    static public bool hasPuck = false;
+    private bool leftPlayerHasPuck = false;
+    [SerializeField]
+    private bool rightPlayerHasPuck = false;
+
     [Range(1f, 200f)]
     public float speed = 10f;
     private Vector2 movementInputLeft;
@@ -58,12 +62,21 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        //if (collision.gameObject.tag == "Puck")
-        //{
-            //hasPuck = true;
-            //Destroy(collision.gameObject);
-            //puckVisualPrefab.SetActive(true);
-        //}
+        if (collision.gameObject.CompareTag("Puck"))
+        {
+            if (Vector3.Distance(leftPlayer.transform.position, collision.transform.position) < 1f)
+            {
+                leftPlayerHasPuck = true;
+                rightPlayerHasPuck = false;
+                Destroy(collision.gameObject);
+            }
+            else if (Vector3.Distance(rightPlayer.transform.position, collision.transform.position) < 1f)
+            {
+                rightPlayerHasPuck = true;
+                leftPlayerHasPuck = false;
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
     public void OnLSMove(InputAction.CallbackContext ctx) => movementInputLeft = ctx.ReadValue<Vector2>();

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftPlayer: {fileID: 3249914283148156245}
   rightPlayer: {fileID: 3188843055890904921}
-  speed: 15
+  speed: 35
 --- !u!114 &4881598820745756073
 MonoBehaviour:
   m_ObjectHideFlags: 0

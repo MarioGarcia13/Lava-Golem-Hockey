@@ -231,9 +231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
-  startingPoints:
-  - {fileID: 1356938889}
-  - {fileID: 1862634907}
+  startingPoints: []
+  P1Spawn: {fileID: 1356938889}
+  P2Spawn: {fileID: 1862634907}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
