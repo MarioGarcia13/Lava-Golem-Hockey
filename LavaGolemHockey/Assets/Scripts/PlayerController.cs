@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private InputAction moveLeft;
     private InputAction moveRight;
 
-
     //Player Variables
     public GameObject leftPlayer;
     public GameObject rightPlayer;
@@ -40,9 +39,6 @@ public class PlayerController : MonoBehaviour
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("PlayerControls");
 
-        //leftPlayer = GameObject.FindGameObjectWithTag("left");
-        //rightPlayer = GameObject.FindGameObjectWithTag("right");
-
     }
     private void OnEnable()
     {
@@ -60,24 +56,32 @@ public class PlayerController : MonoBehaviour
         leftPlayer.transform.Translate(new Vector3(movementInputLeft.x, 0, movementInputLeft.y) * speed * Time.deltaTime);
         rightPlayer.transform.Translate(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
     }
-    private void OnCollisionEnter(Collision collision)
+
+
+    public void CollisionDetected(PlayerCollisions playerCollision)
     {
-        if (collision.gameObject.CompareTag("Puck"))
+        Debug.Log("Collided");
+
+        //reasarch collisions for "other" and for the actual logic you can do it on the player and make it send a message to this one for the status. 
+        if (Vector3.Distance(leftPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
-            if (Vector3.Distance(leftPlayer.transform.position, collision.transform.position) < 1f)
-            {
-                leftPlayerHasPuck = true;
-                rightPlayerHasPuck = false;
-                Destroy(collision.gameObject);
-            }
-            else if (Vector3.Distance(rightPlayer.transform.position, collision.transform.position) < 1f)
-            {
-                rightPlayerHasPuck = true;
-                leftPlayerHasPuck = false;
-                Destroy(collision.gameObject);
-            }
+            leftPlayerHasPuck = true;
+            rightPlayerHasPuck = false;
+            Destroy(playerCollision.gameObject);
+        }
+        else if (Vector3.Distance(rightPlayer.transform.position, playerCollision.transform.position) < 2f)
+        {
+            rightPlayerHasPuck = true;
+            leftPlayerHasPuck = false;
+            Destroy(playerCollision.gameObject);
+
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+   // {
+        
+    //}
 
     public void OnLSMove(InputAction.CallbackContext ctx) => movementInputLeft = ctx.ReadValue<Vector2>();
 
