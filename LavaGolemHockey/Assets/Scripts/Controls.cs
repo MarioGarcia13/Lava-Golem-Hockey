@@ -24,7 +24,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""LeftControls"",
+            ""name"": ""PlayerControls"",
             ""id"": ""6ad9a99e-56fd-4f84-8933-3d4f73106287"",
             ""actions"": [
                 {
@@ -37,12 +37,48 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""RSMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""2ee22cd7-9565-465d-ba27-f8df7a89243b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Join"",
                     ""type"": ""Button"",
                     ""id"": ""b1709bcd-1aa8-4d35-8897-c16e4e327146"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootTackle"",
+                    ""type"": ""Button"",
+                    ""id"": ""a76a9e39-3c3b-421c-b700-cbe3f52aaa64"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftPass"",
+                    ""type"": ""Button"",
+                    ""id"": ""11607ce9-2d10-4b0f-a12f-d38b36b66231"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightPass"",
+                    ""type"": ""Button"",
+                    ""id"": ""e90ca26e-d897-4289-9810-d777ddbc13c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -134,27 +170,43 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Join"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""RightControls"",
-            ""id"": ""7f3ddb75-a9c8-4fbf-b8a1-f5038c88dcac"",
-            ""actions"": [
-                {
-                    ""name"": ""RSMove"",
-                    ""type"": ""Value"",
-                    ""id"": ""3344631f-c8d8-4ca8-bf09-38dee489f479"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""0fb15c05-57ec-4a95-8d73-076e7f81e20b"",
+                    ""id"": ""7b8e76a0-a861-4c73-89cc-5c0c85d8d576"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootTackle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c430829c-e1c3-4352-a536-834a2205814f"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftPass"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b581ccd-4324-4cc5-aaf2-d3fb244bde91"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftPass"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6456c1d-e898-468a-b47b-5b6d9dac7d83"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -165,7 +217,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""UDLR"",
-                    ""id"": ""be8acb0a-6119-40c6-bc4a-12795018a612"",
+                    ""id"": ""7fedb584-87b7-4746-9623-0c63cb370c2f"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -176,7 +228,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""8a69e79b-2a2e-40f1-ab1d-8623c13f1e65"",
+                    ""id"": ""fffd9872-fcd3-4b83-86a1-b2664a6eb19d"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -187,7 +239,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""d9f64917-f5b0-4bb4-a1ba-85d44518cfed"",
+                    ""id"": ""cd0d7fb9-2085-4048-a778-f2573669504e"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -198,7 +250,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""721589e1-6ccc-48ca-bb2d-eed2cf7c45b8"",
+                    ""id"": ""6b0114e6-5752-46ad-9bc4-54b0347b1018"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -209,7 +261,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""319deb9b-d745-4769-9d87-dbcda48c869c"",
+                    ""id"": ""d3badbdd-84ca-4018-a223-4c03df1e1bf8"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -217,19 +269,65 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""RSMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f9b00a8-f5c4-434d-b192-93d2fb8783e8"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightPass"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc19fb4a-12e0-4984-86a2-e5eeda79c7e4"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightPass"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
-        // LeftControls
-        m_LeftControls = asset.FindActionMap("LeftControls", throwIfNotFound: true);
-        m_LeftControls_LSMove = m_LeftControls.FindAction("LSMove", throwIfNotFound: true);
-        m_LeftControls_Join = m_LeftControls.FindAction("Join", throwIfNotFound: true);
-        // RightControls
-        m_RightControls = asset.FindActionMap("RightControls", throwIfNotFound: true);
-        m_RightControls_RSMove = m_RightControls.FindAction("RSMove", throwIfNotFound: true);
+        // PlayerControls
+        m_PlayerControls = asset.FindActionMap("PlayerControls", throwIfNotFound: true);
+        m_PlayerControls_LSMove = m_PlayerControls.FindAction("LSMove", throwIfNotFound: true);
+        m_PlayerControls_RSMove = m_PlayerControls.FindAction("RSMove", throwIfNotFound: true);
+        m_PlayerControls_Join = m_PlayerControls.FindAction("Join", throwIfNotFound: true);
+        m_PlayerControls_ShootTackle = m_PlayerControls.FindAction("ShootTackle", throwIfNotFound: true);
+        m_PlayerControls_LeftPass = m_PlayerControls.FindAction("LeftPass", throwIfNotFound: true);
+        m_PlayerControls_RightPass = m_PlayerControls.FindAction("RightPass", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,112 +386,116 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // LeftControls
-    private readonly InputActionMap m_LeftControls;
-    private List<ILeftControlsActions> m_LeftControlsActionsCallbackInterfaces = new List<ILeftControlsActions>();
-    private readonly InputAction m_LeftControls_LSMove;
-    private readonly InputAction m_LeftControls_Join;
-    public struct LeftControlsActions
+    // PlayerControls
+    private readonly InputActionMap m_PlayerControls;
+    private List<IPlayerControlsActions> m_PlayerControlsActionsCallbackInterfaces = new List<IPlayerControlsActions>();
+    private readonly InputAction m_PlayerControls_LSMove;
+    private readonly InputAction m_PlayerControls_RSMove;
+    private readonly InputAction m_PlayerControls_Join;
+    private readonly InputAction m_PlayerControls_ShootTackle;
+    private readonly InputAction m_PlayerControls_LeftPass;
+    private readonly InputAction m_PlayerControls_RightPass;
+    public struct PlayerControlsActions
     {
         private @Controls m_Wrapper;
-        public LeftControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @LSMove => m_Wrapper.m_LeftControls_LSMove;
-        public InputAction @Join => m_Wrapper.m_LeftControls_Join;
-        public InputActionMap Get() { return m_Wrapper.m_LeftControls; }
+        public PlayerControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LSMove => m_Wrapper.m_PlayerControls_LSMove;
+        public InputAction @RSMove => m_Wrapper.m_PlayerControls_RSMove;
+        public InputAction @Join => m_Wrapper.m_PlayerControls_Join;
+        public InputAction @ShootTackle => m_Wrapper.m_PlayerControls_ShootTackle;
+        public InputAction @LeftPass => m_Wrapper.m_PlayerControls_LeftPass;
+        public InputAction @RightPass => m_Wrapper.m_PlayerControls_RightPass;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(LeftControlsActions set) { return set.Get(); }
-        public void AddCallbacks(ILeftControlsActions instance)
+        public static implicit operator InputActionMap(PlayerControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerControlsActions instance)
         {
-            if (instance == null || m_Wrapper.m_LeftControlsActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_LeftControlsActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerControlsActionsCallbackInterfaces.Add(instance);
             @LSMove.started += instance.OnLSMove;
             @LSMove.performed += instance.OnLSMove;
             @LSMove.canceled += instance.OnLSMove;
+            @RSMove.started += instance.OnRSMove;
+            @RSMove.performed += instance.OnRSMove;
+            @RSMove.canceled += instance.OnRSMove;
             @Join.started += instance.OnJoin;
             @Join.performed += instance.OnJoin;
             @Join.canceled += instance.OnJoin;
+            @ShootTackle.started += instance.OnShootTackle;
+            @ShootTackle.performed += instance.OnShootTackle;
+            @ShootTackle.canceled += instance.OnShootTackle;
+            @LeftPass.started += instance.OnLeftPass;
+            @LeftPass.performed += instance.OnLeftPass;
+            @LeftPass.canceled += instance.OnLeftPass;
+            @RightPass.started += instance.OnRightPass;
+            @RightPass.performed += instance.OnRightPass;
+            @RightPass.canceled += instance.OnRightPass;
         }
 
-        private void UnregisterCallbacks(ILeftControlsActions instance)
+        private void UnregisterCallbacks(IPlayerControlsActions instance)
         {
             @LSMove.started -= instance.OnLSMove;
             @LSMove.performed -= instance.OnLSMove;
             @LSMove.canceled -= instance.OnLSMove;
-            @Join.started -= instance.OnJoin;
-            @Join.performed -= instance.OnJoin;
-            @Join.canceled -= instance.OnJoin;
-        }
-
-        public void RemoveCallbacks(ILeftControlsActions instance)
-        {
-            if (m_Wrapper.m_LeftControlsActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(ILeftControlsActions instance)
-        {
-            foreach (var item in m_Wrapper.m_LeftControlsActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_LeftControlsActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public LeftControlsActions @LeftControls => new LeftControlsActions(this);
-
-    // RightControls
-    private readonly InputActionMap m_RightControls;
-    private List<IRightControlsActions> m_RightControlsActionsCallbackInterfaces = new List<IRightControlsActions>();
-    private readonly InputAction m_RightControls_RSMove;
-    public struct RightControlsActions
-    {
-        private @Controls m_Wrapper;
-        public RightControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @RSMove => m_Wrapper.m_RightControls_RSMove;
-        public InputActionMap Get() { return m_Wrapper.m_RightControls; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(RightControlsActions set) { return set.Get(); }
-        public void AddCallbacks(IRightControlsActions instance)
-        {
-            if (instance == null || m_Wrapper.m_RightControlsActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_RightControlsActionsCallbackInterfaces.Add(instance);
-            @RSMove.started += instance.OnRSMove;
-            @RSMove.performed += instance.OnRSMove;
-            @RSMove.canceled += instance.OnRSMove;
-        }
-
-        private void UnregisterCallbacks(IRightControlsActions instance)
-        {
             @RSMove.started -= instance.OnRSMove;
             @RSMove.performed -= instance.OnRSMove;
             @RSMove.canceled -= instance.OnRSMove;
+            @Join.started -= instance.OnJoin;
+            @Join.performed -= instance.OnJoin;
+            @Join.canceled -= instance.OnJoin;
+            @ShootTackle.started -= instance.OnShootTackle;
+            @ShootTackle.performed -= instance.OnShootTackle;
+            @ShootTackle.canceled -= instance.OnShootTackle;
+            @LeftPass.started -= instance.OnLeftPass;
+            @LeftPass.performed -= instance.OnLeftPass;
+            @LeftPass.canceled -= instance.OnLeftPass;
+            @RightPass.started -= instance.OnRightPass;
+            @RightPass.performed -= instance.OnRightPass;
+            @RightPass.canceled -= instance.OnRightPass;
         }
 
-        public void RemoveCallbacks(IRightControlsActions instance)
+        public void RemoveCallbacks(IPlayerControlsActions instance)
         {
-            if (m_Wrapper.m_RightControlsActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerControlsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IRightControlsActions instance)
+        public void SetCallbacks(IPlayerControlsActions instance)
         {
-            foreach (var item in m_Wrapper.m_RightControlsActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerControlsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_RightControlsActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerControlsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public RightControlsActions @RightControls => new RightControlsActions(this);
-    public interface ILeftControlsActions
+    public PlayerControlsActions @PlayerControls => new PlayerControlsActions(this);
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
+    private int m_KeyboardSchemeIndex = -1;
+    public InputControlScheme KeyboardScheme
+    {
+        get
+        {
+            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+            return asset.controlSchemes[m_KeyboardSchemeIndex];
+        }
+    }
+    public interface IPlayerControlsActions
     {
         void OnLSMove(InputAction.CallbackContext context);
-        void OnJoin(InputAction.CallbackContext context);
-    }
-    public interface IRightControlsActions
-    {
         void OnRSMove(InputAction.CallbackContext context);
+        void OnJoin(InputAction.CallbackContext context);
+        void OnShootTackle(InputAction.CallbackContext context);
+        void OnLeftPass(InputAction.CallbackContext context);
+        void OnRightPass(InputAction.CallbackContext context);
     }
 }
