@@ -48,7 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftPlayer: {fileID: 3249914283148156245}
+  leftPuckPos: {fileID: 5004595381630798630}
   rightPlayer: {fileID: 3188843055890904921}
+  rightPuckPos: {fileID: 3313920250481094709}
+  puckPrefab: {fileID: 143487984517241902, guid: ffcb3717021f47741ad1ede4af8364f3,
+    type: 3}
   leftPlayerHasPuck: 0
   rightPlayerHasPuck: 0
   speed: 35
@@ -119,7 +123,19 @@ MonoBehaviour:
     m_ActionId: a76a9e39-3c3b-421c-b700-cbe3f52aaa64
     m_ActionName: PlayerControls/ShootTackle[/DualSenseGamepadHID/leftTrigger]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3021709018377470550}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnLeftPass
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 11607ce9-2d10-4b0f-a12f-d38b36b66231
     m_ActionName: PlayerControls/LeftPass[/DualSenseGamepadHID/leftShoulder,/Keyboard/p]
   - m_PersistentCalls:
@@ -264,7 +280,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &7935661869742267461
 MonoBehaviour:
@@ -278,6 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f7694996bedbf4b97b21ae93d3bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasPuck: 0
+  puckVisual: {fileID: 6157088012708928399}
 --- !u!1 &3249914283148156245
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f7694996bedbf4b97b21ae93d3bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasPuck: 0
+  puckVisual: {fileID: 5954952160233081529}
 --- !u!1 &4648685926570822782
 GameObject:
   m_ObjectHideFlags: 0

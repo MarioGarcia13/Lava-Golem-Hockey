@@ -7,10 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     //Puck Variables
-    //public Puck puckClass;
-    //public GameObject puckVisualPrefab;
     //public GameObject puckPrefab;
-    //public GameObject test;
 
     //Input Variables
     private InputActionAsset inputAsset;
@@ -19,8 +16,13 @@ public class PlayerController : MonoBehaviour
     private InputAction moveRight;
 
     //Player Variables
+    private PlayerCollisions playerCollisions;
     public GameObject leftPlayer;
+    public Transform leftPuckPos;
     public GameObject rightPlayer;
+    public Transform rightPuckPos;
+
+    public GameObject puckPrefab;
     [SerializeField]
     private bool leftPlayerHasPuck = false;
     [SerializeField]
@@ -57,24 +59,26 @@ public class PlayerController : MonoBehaviour
         rightPlayer.transform.Translate(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
     }
 
+    public void DeactivatePuck()
+    {
+        
+    }
 
     public void CollisionDetected(PlayerCollisions playerCollision)
     {
         Debug.Log("Collided");
 
         //reasarch collisions for "other" and for the actual logic you can do it on the player and make it send a message to this one for the status. 
+
         if (Vector3.Distance(leftPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
             leftPlayerHasPuck = true;
             rightPlayerHasPuck = false;
-            Destroy(playerCollision.gameObject);
         }
         else if (Vector3.Distance(rightPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
             rightPlayerHasPuck = true;
             leftPlayerHasPuck = false;
-            Destroy(playerCollision.gameObject);
-
         }
     }
 
@@ -89,6 +93,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftPass(InputAction.CallbackContext ctx)
     {
+        if (leftPlayerHasPuck)
+        {
+            Debug.Log("passed");
+            leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
+            //GetComponentInChildren<PlayerCollisions>().RemovePuck();
+            Instantiate(puckPrefab, leftPuckPos.position, Quaternion.identity);
+        }
+
+
         //when the player has the puck
             //instantiate puck in front of player
             //set a force for the puck s

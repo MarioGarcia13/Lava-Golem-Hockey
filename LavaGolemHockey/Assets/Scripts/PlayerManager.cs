@@ -33,14 +33,6 @@ public class PlayerManager : MonoBehaviour
     public void AddPlayer(PlayerInput player)
     {
         players.Add(player);
-        //Debug.Log(startingPoints[startingPoints.Count].position);
-        //Debug.Log(players.Count);
-
-        //Transform playerParent = player.transform.parent;
-        //playerParent.position = startingPoints[players.Count - 1].position;
-
-        //test
-
         player.transform.position = startingPoints[players.Count - 1].position;
     }
 
