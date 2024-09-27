@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
             leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
             //GetComponentInChildren<PlayerCollisions>().RemovePuck();
             Instantiate(puckPrefab, leftPuckPos.position, Quaternion.identity);
+            leftPlayerHasPuck = false;
         }
 
 
