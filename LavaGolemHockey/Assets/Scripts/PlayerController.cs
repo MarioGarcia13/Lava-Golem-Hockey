@@ -19,8 +19,10 @@ public class PlayerController : MonoBehaviour
     private PlayerCollisions playerCollisions;
     public GameObject leftPlayer;
     public Transform leftPuckPos;
+    //public Rigidbody leftRB;
     public GameObject rightPlayer;
     public Transform rightPuckPos;
+    //public Rigidbody rightRB;
 
     public GameObject puckPrefab;
     [SerializeField]
@@ -40,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("PlayerControls");
+        //leftRB = transform.GetChild(0).GetComponentInChildren<Rigidbody>();
+        //rightRB = transform.GetChild(0).GetComponentInChildren<Rigidbody>();
 
     }
     private void OnEnable()
@@ -57,6 +61,9 @@ public class PlayerController : MonoBehaviour
     {
         leftPlayer.transform.Translate(new Vector3(movementInputLeft.x, 0, movementInputLeft.y) * speed * Time.deltaTime);
         rightPlayer.transform.Translate(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
+
+        //leftRB.MovePosition(new Vector3(movementInputLeft.x, 0, movementInputLeft.y) * speed * Time.deltaTime);
+        //rightRB.MovePosition(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
     }
 
     public void DeactivatePuck()
@@ -95,11 +102,12 @@ public class PlayerController : MonoBehaviour
     {
         if (leftPlayerHasPuck)
         {
+            leftPlayerHasPuck = false;
             Debug.Log("passed");
             leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
-            //GetComponentInChildren<PlayerCollisions>().RemovePuck();
-            Instantiate(puckPrefab, leftPuckPos.position, Quaternion.identity);
-            leftPlayerHasPuck = false;
+            var instance = Instantiate(puckPrefab, leftPuckPos.position, Quaternion.identity);
+            instance.GetComponent<Rigidbody>().AddForce(new Vector3(45f, 0f, 0f), ForceMode.Impulse);
+            
         }
 
 
@@ -108,6 +116,19 @@ public class PlayerController : MonoBehaviour
             //set a force for the puck s
             //shoot the puck in the direction of teammate
             //gaurantee that the puck will reach the teammate unless intercepted
+    }
+
+    public void OnRightPass(InputAction.CallbackContext ctx)
+    {
+        if (rightPlayerHasPuck)
+        {
+            rightPlayerHasPuck = false;
+            Debug.Log("passed");
+            rightPlayer.GetComponent<PlayerCollisions>().RemovePuck();
+            var instance = Instantiate(puckPrefab, rightPuckPos.position, Quaternion.identity);
+            instance.GetComponent<Rigidbody>().AddForce(new Vector3(45f, 0f, 0f), ForceMode.Impulse);
+
+        }
     }
 
     public void OnShootTackle(InputAction.CallbackContext ctx)

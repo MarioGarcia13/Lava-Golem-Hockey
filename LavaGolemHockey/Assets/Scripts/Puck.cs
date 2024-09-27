@@ -41,9 +41,9 @@ public class Puck : MonoBehaviour
         }
     }
 
-    public void shootPuck()
+    public void shootPuck( )
     {
-        rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
+       rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
     }
 
     void Update()
