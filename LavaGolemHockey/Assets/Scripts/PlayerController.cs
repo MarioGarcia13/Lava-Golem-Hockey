@@ -19,10 +19,10 @@ public class PlayerController : MonoBehaviour
     private PlayerCollisions playerCollisions;
     public GameObject leftPlayer;
     public Transform leftPuckPos;
-    //public Rigidbody leftRB;
+    public Rigidbody leftRB;
     public GameObject rightPlayer;
     public Transform rightPuckPos;
-    //public Rigidbody rightRB;
+    public Rigidbody rightRB;
 
     public GameObject puckPrefab;
     [SerializeField]
@@ -42,8 +42,8 @@ public class PlayerController : MonoBehaviour
 
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("PlayerControls");
-        //leftRB = transform.GetChild(0).GetComponentInChildren<Rigidbody>();
-        //rightRB = transform.GetChild(0).GetComponentInChildren<Rigidbody>();
+        leftRB = leftPlayer.GetComponent<Rigidbody>();
+        rightRB = rightPlayer.GetComponent<Rigidbody>();
 
     }
     private void OnEnable()
@@ -59,16 +59,33 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        leftPlayer.transform.Translate(new Vector3(movementInputLeft.x, 0, movementInputLeft.y) * speed * Time.deltaTime);
-        rightPlayer.transform.Translate(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
+        MovePlayer(leftRB, movementInputLeft);
+        MovePlayer(rightRB, movementInputRight);
+
+        //leftPlayer.transform.Translate(new Vector3(movementInputLeft.x, 0, movementInputLeft.y) * speed * Time.deltaTime);
+       // rightPlayer.transform.Translate(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
 
         //leftRB.MovePosition(new Vector3(movementInputLeft.x, 0, movementInputLeft.y) * speed * Time.deltaTime);
         //rightRB.MovePosition(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
+
+        //if (movementInputLeft != Vector2.zero)
+       // {
+         //   Quaternion leftTargetRotation = Quaternion.LookRotation(new Vector3(movementInputLeft.x, 0, movementInputLeft.y));
+         //   leftPlayer.transform.rotation = Quaternion.Slerp(leftPlayer.transform.rotation, leftTargetRotation, Time.deltaTime * 10f);
+       // }
     }
 
-    public void DeactivatePuck()
+    private void MovePlayer(Rigidbody playerRigidbody, Vector2 movementInput)
     {
+        Vector3 movement = new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime;
+
+        playerRigidbody.MovePosition(playerRigidbody.position + movement);
         
+        if (movementInput != Vector2.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movementInput.x, 0, movementInput.y));
+            playerRigidbody.MoveRotation(Quaternion.Slerp(playerRigidbody.rotation, targetRotation, Time.deltaTime * 10));
+        }
     }
 
     public void CollisionDetected(PlayerCollisions playerCollision)
@@ -106,8 +123,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("passed");
             leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
             var instance = Instantiate(puckPrefab, leftPuckPos.position, Quaternion.identity);
-            instance.GetComponent<Rigidbody>().AddForce(new Vector3(45f, 0f, 0f), ForceMode.Impulse);
-            
+
+            Vector3 directionRightPlayer = (rightPlayer.transform.position - leftPlayer.transform.position).normalized;
+
+            instance.GetComponent<Rigidbody>().AddForce(directionRightPlayer * 45, ForceMode.Impulse);
         }
 
 
@@ -131,7 +150,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnShootTackle(InputAction.CallbackContext ctx)
+    public void OnLeftShootTackle(InputAction.CallbackContext ctx)
+    {
+        //When the player has the puck
+            //get the direction of the player that has the puck
+            //add force to the puck
+            //
+    }
+    
+    public void OnRightShootTackle(InputAction.CallbackContext ctx)
     {
         //When the player has the puck
             //get the direction of the player that has the puck

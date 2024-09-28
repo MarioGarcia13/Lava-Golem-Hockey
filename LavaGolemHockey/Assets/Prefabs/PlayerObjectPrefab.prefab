@@ -291,7 +291,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
@@ -440,7 +440,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
@@ -527,7 +527,7 @@ PrefabInstance:
     - target: {fileID: 771827627552900756, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 771827627552900756, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
@@ -537,7 +537,7 @@ PrefabInstance:
     - target: {fileID: 771827627552900756, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 771827627552900756, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
@@ -630,7 +630,7 @@ PrefabInstance:
     - target: {fileID: 771827627552900756, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 771827627552900756, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
@@ -640,7 +640,7 @@ PrefabInstance:
     - target: {fileID: 771827627552900756, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 771827627552900756, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}

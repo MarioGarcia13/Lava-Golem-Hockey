@@ -55,9 +55,18 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ShootTackle"",
+                    ""name"": ""LeftShootTackle"",
                     ""type"": ""Button"",
                     ""id"": ""a76a9e39-3c3b-421c-b700-cbe3f52aaa64"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightShootTackle"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e58c96b-956c-41c0-9279-22bf1aca36b8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -178,7 +187,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ShootTackle"",
+                    ""action"": ""LeftShootTackle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -291,6 +300,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""RightPass"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""428fe812-0390-4f8d-ad98-81c9db209953"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightShootTackle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -325,7 +345,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_PlayerControls_LSMove = m_PlayerControls.FindAction("LSMove", throwIfNotFound: true);
         m_PlayerControls_RSMove = m_PlayerControls.FindAction("RSMove", throwIfNotFound: true);
         m_PlayerControls_Join = m_PlayerControls.FindAction("Join", throwIfNotFound: true);
-        m_PlayerControls_ShootTackle = m_PlayerControls.FindAction("ShootTackle", throwIfNotFound: true);
+        m_PlayerControls_LeftShootTackle = m_PlayerControls.FindAction("LeftShootTackle", throwIfNotFound: true);
+        m_PlayerControls_RightShootTackle = m_PlayerControls.FindAction("RightShootTackle", throwIfNotFound: true);
         m_PlayerControls_LeftPass = m_PlayerControls.FindAction("LeftPass", throwIfNotFound: true);
         m_PlayerControls_RightPass = m_PlayerControls.FindAction("RightPass", throwIfNotFound: true);
     }
@@ -392,7 +413,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_LSMove;
     private readonly InputAction m_PlayerControls_RSMove;
     private readonly InputAction m_PlayerControls_Join;
-    private readonly InputAction m_PlayerControls_ShootTackle;
+    private readonly InputAction m_PlayerControls_LeftShootTackle;
+    private readonly InputAction m_PlayerControls_RightShootTackle;
     private readonly InputAction m_PlayerControls_LeftPass;
     private readonly InputAction m_PlayerControls_RightPass;
     public struct PlayerControlsActions
@@ -402,7 +424,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @LSMove => m_Wrapper.m_PlayerControls_LSMove;
         public InputAction @RSMove => m_Wrapper.m_PlayerControls_RSMove;
         public InputAction @Join => m_Wrapper.m_PlayerControls_Join;
-        public InputAction @ShootTackle => m_Wrapper.m_PlayerControls_ShootTackle;
+        public InputAction @LeftShootTackle => m_Wrapper.m_PlayerControls_LeftShootTackle;
+        public InputAction @RightShootTackle => m_Wrapper.m_PlayerControls_RightShootTackle;
         public InputAction @LeftPass => m_Wrapper.m_PlayerControls_LeftPass;
         public InputAction @RightPass => m_Wrapper.m_PlayerControls_RightPass;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
@@ -423,9 +446,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Join.started += instance.OnJoin;
             @Join.performed += instance.OnJoin;
             @Join.canceled += instance.OnJoin;
-            @ShootTackle.started += instance.OnShootTackle;
-            @ShootTackle.performed += instance.OnShootTackle;
-            @ShootTackle.canceled += instance.OnShootTackle;
+            @LeftShootTackle.started += instance.OnLeftShootTackle;
+            @LeftShootTackle.performed += instance.OnLeftShootTackle;
+            @LeftShootTackle.canceled += instance.OnLeftShootTackle;
+            @RightShootTackle.started += instance.OnRightShootTackle;
+            @RightShootTackle.performed += instance.OnRightShootTackle;
+            @RightShootTackle.canceled += instance.OnRightShootTackle;
             @LeftPass.started += instance.OnLeftPass;
             @LeftPass.performed += instance.OnLeftPass;
             @LeftPass.canceled += instance.OnLeftPass;
@@ -445,9 +471,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Join.started -= instance.OnJoin;
             @Join.performed -= instance.OnJoin;
             @Join.canceled -= instance.OnJoin;
-            @ShootTackle.started -= instance.OnShootTackle;
-            @ShootTackle.performed -= instance.OnShootTackle;
-            @ShootTackle.canceled -= instance.OnShootTackle;
+            @LeftShootTackle.started -= instance.OnLeftShootTackle;
+            @LeftShootTackle.performed -= instance.OnLeftShootTackle;
+            @LeftShootTackle.canceled -= instance.OnLeftShootTackle;
+            @RightShootTackle.started -= instance.OnRightShootTackle;
+            @RightShootTackle.performed -= instance.OnRightShootTackle;
+            @RightShootTackle.canceled -= instance.OnRightShootTackle;
             @LeftPass.started -= instance.OnLeftPass;
             @LeftPass.performed -= instance.OnLeftPass;
             @LeftPass.canceled -= instance.OnLeftPass;
@@ -494,7 +523,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnLSMove(InputAction.CallbackContext context);
         void OnRSMove(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
-        void OnShootTackle(InputAction.CallbackContext context);
+        void OnLeftShootTackle(InputAction.CallbackContext context);
+        void OnRightShootTackle(InputAction.CallbackContext context);
         void OnLeftPass(InputAction.CallbackContext context);
         void OnRightPass(InputAction.CallbackContext context);
     }
