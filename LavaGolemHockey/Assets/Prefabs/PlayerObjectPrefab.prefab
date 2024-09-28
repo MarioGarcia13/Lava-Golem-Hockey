@@ -121,7 +121,19 @@ MonoBehaviour:
     m_ActionId: b1709bcd-1aa8-4d35-8897-c16e4e327146
     m_ActionName: PlayerControls/Join[/DualSenseGamepadHID/start,/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3021709018377470550}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnLeftShootTackle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a76a9e39-3c3b-421c-b700-cbe3f52aaa64
     m_ActionName: PlayerControls/ShootTackle[/DualSenseGamepadHID/leftTrigger]
   - m_PersistentCalls:
@@ -156,6 +168,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e90ca26e-d897-4289-9810-d777ddbc13c9
     m_ActionName: PlayerControls/RightPass[/DualSenseGamepadHID/leftShoulder,/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3021709018377470550}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRightShootTackle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6e58c96b-956c-41c0-9279-22bf1aca36b8
+    m_ActionName: PlayerControls/RightShootTackle[/DualSenseGamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: PlayerControls

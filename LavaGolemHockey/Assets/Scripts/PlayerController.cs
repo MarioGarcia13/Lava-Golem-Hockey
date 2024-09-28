@@ -6,9 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    //Puck Variables
-    //public GameObject puckPrefab;
-
     //Input Variables
     private InputActionAsset inputAsset;
     private InputActionMap player;
@@ -35,11 +32,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementInputLeft;
     private Vector2 movementInputRight;
 
+    private Coroutine passCoroutine;
+
     private void Awake()
     {
-        //puckClass = GetComponent<Puck>();
-
-
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("PlayerControls");
         leftRB = leftPlayer.GetComponent<Rigidbody>();
@@ -61,26 +57,12 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer(leftRB, movementInputLeft);
         MovePlayer(rightRB, movementInputRight);
-
-        //leftPlayer.transform.Translate(new Vector3(movementInputLeft.x, 0, movementInputLeft.y) * speed * Time.deltaTime);
-       // rightPlayer.transform.Translate(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
-
-        //leftRB.MovePosition(new Vector3(movementInputLeft.x, 0, movementInputLeft.y) * speed * Time.deltaTime);
-        //rightRB.MovePosition(new Vector3(movementInputRight.x, 0, movementInputRight.y) * speed * Time.deltaTime);
-
-        //if (movementInputLeft != Vector2.zero)
-       // {
-         //   Quaternion leftTargetRotation = Quaternion.LookRotation(new Vector3(movementInputLeft.x, 0, movementInputLeft.y));
-         //   leftPlayer.transform.rotation = Quaternion.Slerp(leftPlayer.transform.rotation, leftTargetRotation, Time.deltaTime * 10f);
-       // }
     }
 
     private void MovePlayer(Rigidbody playerRigidbody, Vector2 movementInput)
     {
         Vector3 movement = new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime;
-
         playerRigidbody.MovePosition(playerRigidbody.position + movement);
-        
         if (movementInput != Vector2.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movementInput.x, 0, movementInput.y));
@@ -91,9 +73,6 @@ public class PlayerController : MonoBehaviour
     public void CollisionDetected(PlayerCollisions playerCollision)
     {
         Debug.Log("Collided");
-
-        //reasarch collisions for "other" and for the actual logic you can do it on the player and make it send a message to this one for the status. 
-
         if (Vector3.Distance(leftPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
             leftPlayerHasPuck = true;
@@ -106,10 +85,62 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-   // {
-        
-    //}
+    private void ShootPuck(GameObject player, Transform puckPosition)
+    {
+        // Instantiate the puck at the designated position
+        var instance = Instantiate(puckPrefab, puckPosition.position, Quaternion.identity);
+
+        // Get the forward direction of the player
+        Vector3 shootDirection = player.transform.forward;
+
+        // Apply force to the puck in the direction the player is facing
+        instance.GetComponent<Rigidbody>().AddForce(shootDirection * 50, ForceMode.Impulse); // Adjust force value as needed
+
+        // Remove puck from player
+        if (player == leftPlayer)
+        {
+            leftPlayerHasPuck = false;
+            leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
+            Debug.Log("Left player shot the puck");
+        }
+        else if (player == rightPlayer)
+        {
+            rightPlayerHasPuck = false;
+            rightPlayer.GetComponent<PlayerCollisions>().RemovePuck();
+            Debug.Log("Right player shot the puck");
+        }
+    }
+
+    private IEnumerator HandlePass(GameObject passer, GameObject receiver, Transform puckPosition)
+    {
+        Vector3 directionToReceiver = (receiver.transform.position - passer.transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(directionToReceiver);
+        float rotationSpeed = 40f;
+
+        while (Quaternion.Angle(passer.transform.rotation, targetRotation) > 0.1f)
+        {
+            passer.transform.rotation = Quaternion.Slerp(passer.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            yield return null; 
+        }
+       
+        if (passer == leftPlayer)
+        {
+            leftPlayerHasPuck = false;
+            Debug.Log("Left player passed");
+            leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
+        }
+        else if (passer == rightPlayer)
+        {
+            rightPlayerHasPuck = false;
+            Debug.Log("Right player passed");
+            rightPlayer.GetComponent<PlayerCollisions>().RemovePuck();
+        }
+
+        var instance = Instantiate(puckPrefab, puckPosition.position, Quaternion.identity);
+        instance.GetComponent<Rigidbody>().AddForce(directionToReceiver * 45, ForceMode.Impulse);
+        passCoroutine = null;
+    }
+
 
     public void OnLSMove(InputAction.CallbackContext ctx) => movementInputLeft = ctx.ReadValue<Vector2>();
 
@@ -117,52 +148,34 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftPass(InputAction.CallbackContext ctx)
     {
-        if (leftPlayerHasPuck)
+        if (leftPlayerHasPuck && passCoroutine == null)
         {
-            leftPlayerHasPuck = false;
-            Debug.Log("passed");
-            leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
-            var instance = Instantiate(puckPrefab, leftPuckPos.position, Quaternion.identity);
-
-            Vector3 directionRightPlayer = (rightPlayer.transform.position - leftPlayer.transform.position).normalized;
-
-            instance.GetComponent<Rigidbody>().AddForce(directionRightPlayer * 45, ForceMode.Impulse);
+            passCoroutine = StartCoroutine(HandlePass(leftPlayer, rightPlayer, leftPuckPos));
         }
-
-
-        //when the player has the puck
-            //instantiate puck in front of player
-            //set a force for the puck s
-            //shoot the puck in the direction of teammate
-            //gaurantee that the puck will reach the teammate unless intercepted
     }
 
     public void OnRightPass(InputAction.CallbackContext ctx)
     {
-        if (rightPlayerHasPuck)
+        if (rightPlayerHasPuck && passCoroutine == null)
         {
-            rightPlayerHasPuck = false;
-            Debug.Log("passed");
-            rightPlayer.GetComponent<PlayerCollisions>().RemovePuck();
-            var instance = Instantiate(puckPrefab, rightPuckPos.position, Quaternion.identity);
-            instance.GetComponent<Rigidbody>().AddForce(new Vector3(45f, 0f, 0f), ForceMode.Impulse);
-
+            passCoroutine = StartCoroutine(HandlePass(rightPlayer, leftPlayer, rightPuckPos));
         }
     }
 
     public void OnLeftShootTackle(InputAction.CallbackContext ctx)
     {
-        //When the player has the puck
-            //get the direction of the player that has the puck
-            //add force to the puck
-            //
+        if (leftPlayerHasPuck)
+        {
+            ShootPuck(leftPlayer, leftPuckPos);
+        }
+
     }
     
     public void OnRightShootTackle(InputAction.CallbackContext ctx)
     {
-        //When the player has the puck
-            //get the direction of the player that has the puck
-            //add force to the puck
-            //
+        if (rightPlayerHasPuck)
+        {
+            ShootPuck(rightPlayer, rightPuckPos);
+        }
     }
 }
