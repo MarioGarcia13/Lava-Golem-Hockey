@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementInputRight;
 
     private Coroutine passCoroutine;
+    private bool canControl = false;
 
     private void Awake()
     {
@@ -41,7 +42,20 @@ public class PlayerController : MonoBehaviour
         leftRB = leftPlayer.GetComponent<Rigidbody>();
         rightRB = rightPlayer.GetComponent<Rigidbody>();
 
+        GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
+
     }
+
+    private void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
+    }
+
+    public void HandleGameStateChanged(GameStateManager.GameState newState)
+    {
+        canControl = (newState == GameStateManager.GameState.Ready);
+    }
+
     private void OnEnable()
     {
         moveLeft = player.FindAction("LSMove");
@@ -55,8 +69,11 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        MovePlayer(leftRB, movementInputLeft);
-        MovePlayer(rightRB, movementInputRight);
+        if (canControl)
+        {
+            MovePlayer(leftRB, movementInputLeft);
+            MovePlayer(rightRB, movementInputRight);
+        }
     }
 
     private void MovePlayer(Rigidbody playerRigidbody, Vector2 movementInput)
@@ -142,13 +159,25 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnLSMove(InputAction.CallbackContext ctx) => movementInputLeft = ctx.ReadValue<Vector2>();
+    public void OnLSMove(InputAction.CallbackContext ctx)
+    {
+        if (canControl)
+        {
+            movementInputLeft = ctx.ReadValue<Vector2>();
+        }
+    }
 
-    public void OnRSMove(InputAction.CallbackContext ctx) => movementInputRight = ctx.ReadValue<Vector2>();
+    public void OnRSMove(InputAction.CallbackContext ctx)
+    {
+        if (canControl)
+        {
+            movementInputRight = ctx.ReadValue<Vector2>();
+        }
+    }
 
     public void OnLeftPass(InputAction.CallbackContext ctx)
     {
-        if (leftPlayerHasPuck && passCoroutine == null)
+        if (canControl && leftPlayerHasPuck && passCoroutine == null)
         {
             passCoroutine = StartCoroutine(HandlePass(leftPlayer, rightPlayer, leftPuckPos));
         }
@@ -156,7 +185,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRightPass(InputAction.CallbackContext ctx)
     {
-        if (rightPlayerHasPuck && passCoroutine == null)
+        if (canControl && rightPlayerHasPuck && passCoroutine == null)
         {
             passCoroutine = StartCoroutine(HandlePass(rightPlayer, leftPlayer, rightPuckPos));
         }
@@ -164,7 +193,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftShootTackle(InputAction.CallbackContext ctx)
     {
-        if (leftPlayerHasPuck)
+        if (canControl && leftPlayerHasPuck)
         {
             ShootPuck(leftPlayer, leftPuckPos);
         }
@@ -173,7 +202,7 @@ public class PlayerController : MonoBehaviour
     
     public void OnRightShootTackle(InputAction.CallbackContext ctx)
     {
-        if (rightPlayerHasPuck)
+        if (canControl && rightPlayerHasPuck)
         {
             ShootPuck(rightPlayer, rightPuckPos);
         }
