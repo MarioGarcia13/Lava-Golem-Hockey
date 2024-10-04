@@ -92,11 +92,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Collided");
         if (Vector3.Distance(leftPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
+            leftRB.velocity = Vector3.zero;
             leftPlayerHasPuck = true;
             rightPlayerHasPuck = false;
         }
         else if (Vector3.Distance(rightPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
+            leftRB.velocity = Vector3.zero;
             rightPlayerHasPuck = true;
             leftPlayerHasPuck = false;
         }
