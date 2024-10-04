@@ -760,8 +760,8 @@ Transform:
   m_GameObject: {fileID: 557101596}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 31.07578, y: 3.6193254, z: 25.624205}
-  m_LocalScale: {x: 1.248411, y: 2.2386508, z: 104.74627}
+  m_LocalPosition: {x: 31.075779, y: 3.6193254, z: 25.624203}
+  m_LocalScale: {x: 1.2484109, y: 2.2386508, z: 104.74627}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1072,7 +1072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &960333153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,7 +1135,6 @@ GameObject:
   - component: {fileID: 982333128}
   - component: {fileID: 982333127}
   - component: {fileID: 982333126}
-  - component: {fileID: 982333130}
   m_Layer: 0
   m_Name: walls
   m_TagString: Untagged
@@ -1222,40 +1221,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982333125}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 81.6, y: 3.6193466, z: -0.56375694}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 81.600006, y: 3.6193254, z: -0.56375694}
   m_LocalScale: {x: 1.248411, y: 2.2386508, z: 52.551575}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &982333130
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 982333125}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1001 &1090110975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1318,6 +1290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6988476860824165282, guid: ffcb3717021f47741ad1ede4af8364f3,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1970,8 +1947,8 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 467336816}
   - {fileID: 982333129}
-  - {fileID: 1838734457}
   - {fileID: 557101600}
+  - {fileID: 1838734457}
   - {fileID: 1157411141}
   - {fileID: 4588481245574214816}
   - {fileID: 3335584925184242504}
