@@ -12,10 +12,16 @@ public class Puck : MonoBehaviour
 
     [Range(0f, 200f)]
     public float force;
+    public PhysicMaterial puckPhysicsMaterial;
     Rigidbody rb;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Collider collider = GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.material = puckPhysicsMaterial;
+        }
     }
 
     IEnumerator delayTimer()
@@ -36,14 +42,14 @@ public class Puck : MonoBehaviour
 
         if (other.gameObject.tag == "Goal2")
         {
-            goal1Scored = true;
+            goal2Scored = true;
             StartCoroutine(delayTimer());
         }
     }
 
-    public void shootPuck()
+    public void shootPuck( )
     {
-        rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
+       rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
     }
 
     void Update()
