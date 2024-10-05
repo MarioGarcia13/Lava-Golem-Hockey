@@ -171,6 +171,17 @@
                 },
                 {
                     "name": "",
+                    "id": "287e0758-f7f9-4fa8-a134-fc400af9c656",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftShootTackle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c430829c-e1c3-4352-a536-834a2205814f",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
@@ -183,7 +194,7 @@
                 {
                     "name": "",
                     "id": "4b581ccd-4324-4cc5-aaf2-d3fb244bde91",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -203,7 +214,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "UDLR",
+                    "name": "IJKL",
                     "id": "7fedb584-87b7-4746-9623-0c63cb370c2f",
                     "path": "2DVector",
                     "interactions": "",
@@ -216,7 +227,7 @@
                 {
                     "name": "up",
                     "id": "fffd9872-fcd3-4b83-86a1-b2664a6eb19d",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -227,7 +238,7 @@
                 {
                     "name": "down",
                     "id": "cd0d7fb9-2085-4048-a778-f2573669504e",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -238,7 +249,7 @@
                 {
                     "name": "left",
                     "id": "6b0114e6-5752-46ad-9bc4-54b0347b1018",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -249,7 +260,7 @@
                 {
                     "name": "right",
                     "id": "d3badbdd-84ca-4018-a223-4c03df1e1bf8",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -271,7 +282,7 @@
                 {
                     "name": "",
                     "id": "cc19fb4a-12e0-4984-86a2-e5eeda79c7e4",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/u",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -283,6 +294,17 @@
                     "name": "",
                     "id": "428fe812-0390-4f8d-ad98-81c9db209953",
                     "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightShootTackle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a5b0f53-25e2-499e-b32e-44f12f09a1f5",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

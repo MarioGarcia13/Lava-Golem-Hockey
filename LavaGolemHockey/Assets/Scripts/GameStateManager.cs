@@ -11,6 +11,8 @@ public class GameStateManager : MonoBehaviour
         ResetGame
     }
 
+    public GameObject puckPrefab;
+
     public static GameStateManager Instance { get; private set; }
 
     public GameState CurrentState { get; private set; }
@@ -28,6 +30,12 @@ public class GameStateManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    //For testing
+    public void SinglePlayer()
+    {
+        SetGameState(GameState.Ready); 
     }
 
     private void Start()
@@ -80,8 +88,13 @@ public class GameStateManager : MonoBehaviour
     private void HandleNewRound()
     {
         Debug.Log("Starting a new round.");
-        PlayerManager.Instance.ResetPlayerPositions();
+        //SetGameState(GameState.NotReady);
+        Instantiate(puckPrefab, new Vector3(31,4,0), Quaternion.identity);
+        //PlayerManager.Instance.ResetPlayerPositions();
+        SetGameState(GameState.Ready);
+
         // Add logic for starting a new round
+
     }
 
     private void HandleResetGame()

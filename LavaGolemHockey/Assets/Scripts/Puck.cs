@@ -24,26 +24,33 @@ public class Puck : MonoBehaviour
         }
     }
 
-    IEnumerator delayTimer()
+   /* IEnumerator delayTimer()
     {
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(f);
         Destroy(this.gameObject);
         nextRound = true;
-    }
+    }*/
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Goal1")
         {
             goal1Scored = true;
-            StartCoroutine(delayTimer());
+            Destroy(this.gameObject);
+            nextRound = true;
+            GameStateManager.Instance.SetGameState(GameStateManager.GameState.NewRound);
+            //StartCoroutine(delayTimer());
         }
 
         if (other.gameObject.tag == "Goal2")
         {
+
             goal2Scored = true;
-            StartCoroutine(delayTimer());
+            Destroy(this.gameObject);
+            nextRound = true;
+            GameStateManager.Instance.SetGameState(GameStateManager.GameState.NewRound);
+            //StartCoroutine(delayTimer());
         }
     }
 
@@ -52,10 +59,6 @@ public class Puck : MonoBehaviour
        rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
     }
 
-    void Update()
-    {
-        
-    }
 
     /*void OnGUI()
     {

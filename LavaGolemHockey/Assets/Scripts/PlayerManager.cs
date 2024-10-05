@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,9 @@ public class PlayerManager : MonoBehaviour
     private PlayerInputManager playerInputManager;
     public Transform P1Spawn;
     public Transform P2Spawn;
+
+    //testing button
+    public GameObject singlePlayerTest;
 
     private void Awake()
     {
@@ -36,7 +40,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInputManager.onPlayerJoined += AddPlayer;
+        playerInputManager.onPlayerJoined += AddPlayer; 
     }
 
     private void OnDisable()
@@ -48,6 +52,7 @@ public class PlayerManager : MonoBehaviour
     {
         players.Add(player);
         player.transform.position = startingPoints[players.Count - 1].position;
+        singlePlayerTest.SetActive(true);
 
         if (players.Count == 2)
         {
