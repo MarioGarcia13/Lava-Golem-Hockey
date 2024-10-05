@@ -1616,7 +1616,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1903022825713238005
+--- !u!1001 &2061861866
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1724,10 +1724,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3713741238800919733, guid: 47b44fae3d504e44bbe3c37d0a6859be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5459034718858898918, guid: 47b44fae3d504e44bbe3c37d0a6859be,
         type: 3}
       propertyPath: m_Name
-      value: ScoreBoard
+      value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1953,8 +1958,8 @@ SceneRoots:
   - {fileID: 4588481245574214816}
   - {fileID: 3335584925184242504}
   - {fileID: 1901786370}
-  - {fileID: 1903022825713238005}
   - {fileID: 960333155}
   - {fileID: 1090110975}
   - {fileID: 752449561}
   - {fileID: 6371593914527833675}
+  - {fileID: 2061861866}
