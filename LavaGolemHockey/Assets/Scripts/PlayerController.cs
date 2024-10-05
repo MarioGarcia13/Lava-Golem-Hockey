@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,7 +29,12 @@ public class PlayerController : MonoBehaviour
     private bool rightPlayerHasPuck = false;
 
     [Range(1f, 200f)]
-    public float speed = 10f;
+    public float maxSpeed = 10f;
+    [Range(1f, 8000f)]
+    public float moveForce = 1000f;
+    [Range(1f, 100f)]
+    public float rotationSpeed = 10f;
+
     private Vector2 movementInputLeft;
     private Vector2 movementInputRight;
 
@@ -67,7 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         player.Disable();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (canControl)
         {
@@ -78,12 +84,25 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer(Rigidbody playerRigidbody, Vector2 movementInput)
     {
-        Vector3 movement = new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime;
-        playerRigidbody.MovePosition(playerRigidbody.position + movement);
-        if (movementInput != Vector2.zero)
+        // Convert input to 3D vector
+        Vector3 movement = new Vector3(movementInput.x, 0, movementInput.y);
+
+        // Apply force for movement
+        playerRigidbody.AddForce(movement * moveForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+
+        // Limit velocity to maxSpeed
+        Vector3 horizontalVelocity = Vector3.ProjectOnPlane(playerRigidbody.velocity, Vector3.up);
+        if (horizontalVelocity.magnitude > maxSpeed)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movementInput.x, 0, movementInput.y));
-            playerRigidbody.MoveRotation(Quaternion.Slerp(playerRigidbody.rotation, targetRotation, Time.deltaTime * 10));
+            Vector3 limitedVelocity = horizontalVelocity.normalized * maxSpeed;
+            playerRigidbody.velocity = new Vector3(limitedVelocity.x, playerRigidbody.velocity.y, limitedVelocity.z);
+        }
+
+        // Rotate the player
+        if (movement != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+            playerRigidbody.rotation = Quaternion.Slerp(playerRigidbody.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         }
     }
 
@@ -92,13 +111,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Collided");
         if (Vector3.Distance(leftPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
-            leftRB.velocity = Vector3.zero;
+            leftRB.velocity = leftRB.velocity / 2;
             leftPlayerHasPuck = true;
             rightPlayerHasPuck = false;
         }
         else if (Vector3.Distance(rightPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
-            leftRB.velocity = Vector3.zero;
+           //reduce velocity
             rightPlayerHasPuck = true;
             leftPlayerHasPuck = false;
         }
