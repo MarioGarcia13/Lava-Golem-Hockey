@@ -186,6 +186,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArenaStands2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8d6238890d353b4c99c13d872ad9ec2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -268,6 +273,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scoreboard2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c235a4bd85b78704abd08d67cfb6a653,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136867915683184416, guid: c235a4bd85b78704abd08d67cfb6a653,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1975,6 +1990,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4669831943499346401, guid: 47b44fae3d504e44bbe3c37d0a6859be,
         type: 3}
+      propertyPath: startTime
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669831943499346401, guid: 47b44fae3d504e44bbe3c37d0a6859be,
+        type: 3}
       propertyPath: ScoreDisplay1
       value: 
       objectReference: {fileID: 1849111404}
@@ -1983,6 +2003,16 @@ PrefabInstance:
       propertyPath: ScoreDisplay2
       value: 
       objectReference: {fileID: 737441752}
+    - target: {fileID: 4669831943499346401, guid: 47b44fae3d504e44bbe3c37d0a6859be,
+        type: 3}
+      propertyPath: TimerCountdown
+      value: 
+      objectReference: {fileID: 1815390598}
+    - target: {fileID: 4669831943499346401, guid: 47b44fae3d504e44bbe3c37d0a6859be,
+        type: 3}
+      propertyPath: timerCountDown
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5257025975943726747, guid: 47b44fae3d504e44bbe3c37d0a6859be,
         type: 3}
       propertyPath: m_IsActive
@@ -1992,6 +2022,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459034718858898918, guid: 47b44fae3d504e44bbe3c37d0a6859be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5808936465063289880, guid: 47b44fae3d504e44bbe3c37d0a6859be,
         type: 3}
@@ -2395,8 +2430,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7.15
-  m_fontSizeBase: 7.15
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

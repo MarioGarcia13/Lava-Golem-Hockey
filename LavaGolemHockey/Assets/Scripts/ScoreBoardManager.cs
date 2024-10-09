@@ -11,21 +11,38 @@ public class ScoreBoardManager : MonoBehaviour
     public TMP_Text ScoreDisplay2;
     [SerializeField]
     public TMP_Text RoundNum;
+    [SerializeField]
+    public TMP_Text TimerCountdown;
 
     public int score1 = 0;
     public int score2 = 0;
     public int roundNum = 1;
-
+    
+    public float timeRemaining;
+    [Range(0f, 400f)]
+    public float startTime = 15f;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        timeRemaining = startTime;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+            UpdateTimerDisplay();
+        }
+        else
+        {
+            timeRemaining = 0;
+            UpdateTimerDisplay();
+            enabled = false; 
+        }
+
         if (Puck.goal1Scored)
         {
             score1++;
@@ -54,5 +71,12 @@ public class ScoreBoardManager : MonoBehaviour
 
         //update player 2 score
         ScoreDisplay2.SetText(score2.ToString());
+    }
+
+    void UpdateTimerDisplay()
+    {
+        int minutes = Mathf.FloorToInt(timeRemaining / 60f);
+        int seconds = Mathf.FloorToInt(timeRemaining % 60f);
+        TimerCountdown.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
