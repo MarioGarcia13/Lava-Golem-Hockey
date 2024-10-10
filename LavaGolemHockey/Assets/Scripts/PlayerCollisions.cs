@@ -7,6 +7,28 @@ public class PlayerCollisions : MonoBehaviour
     public bool hasPuck = false;
     public GameObject puckVisual;
 
+    private void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe from GameStateManager events
+        if (GameStateManager.Instance != null)
+        {
+            GameStateManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
+        }
+    }
+
+    public void HandleGameStateChanged(GameStateManager.GameState newState)
+    {
+        if (newState == GameStateManager.GameState.NewRound)
+        {
+            puckVisual.SetActive(false);   
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Puck"))
@@ -27,4 +49,10 @@ public class PlayerCollisions : MonoBehaviour
             puckVisual.SetActive(false);
         }
     }
+
+    public void ResetPosition()
+    {
+        this.transform.position = Vector3.zero;
+    }
+
 }

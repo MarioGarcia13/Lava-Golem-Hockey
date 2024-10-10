@@ -40,7 +40,9 @@ public class ScoreBoardManager : MonoBehaviour
         {
             timeRemaining = 0;
             UpdateTimerDisplay();
-            enabled = false; 
+            GameStateManager.Instance.SetGameState(GameStateManager.GameState.NewRound);
+            roundNum++;
+            timeRemaining = startTime;
         }
 
         if (Puck.goal1Scored)

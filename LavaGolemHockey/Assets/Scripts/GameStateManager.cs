@@ -32,6 +32,11 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    public void OnTimerEnded()
+    {
+        SetGameState(GameState.NewRound);
+    }
+
     //For testing
     public void SinglePlayer()
     {

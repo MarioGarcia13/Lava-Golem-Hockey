@@ -41,8 +41,17 @@ public class PlayerController : MonoBehaviour
     private Coroutine passCoroutine;
     private bool canControl = false;
 
+    private Vector3 leftPlayerInitialPosition;
+    private Vector3 rightPlayerInitialPosition;
+
+    
+
     private void Awake()
     {
+        leftPlayerInitialPosition = leftRB.position;
+        rightPlayerInitialPosition = rightRB.position;
+        
+
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("PlayerControls");
         leftRB = leftPlayer.GetComponent<Rigidbody>();
@@ -54,11 +63,37 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameStateManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
+        // Unsubscribe from GameStateManager events
+        if (GameStateManager.Instance != null)
+        {
+            GameStateManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
+        }
+    }
+
+    public void ResetPlayerPositions()
+    {
+        // Reset positions
+        leftRB.position = leftPlayerInitialPosition;
+        rightRB.position = rightPlayerInitialPosition;
+
+        // Reset velocities
+        leftRB.velocity = Vector3.zero;
+        rightRB.velocity = Vector3.zero;
+
+        // Reset rotations (optional, remove if you don't want to reset rotation)
+        leftRB.rotation = Quaternion.identity;
+        rightRB.rotation = Quaternion.identity;
+
+        leftPlayerHasPuck = false;
+        rightPlayerHasPuck = false;
     }
 
     public void HandleGameStateChanged(GameStateManager.GameState newState)
     {
+        if (newState == GameStateManager.GameState.NewRound)
+        {
+            ResetPlayerPositions();
+        }
         canControl = (newState == GameStateManager.GameState.Ready);
     }
 
@@ -132,7 +167,7 @@ public class PlayerController : MonoBehaviour
         Vector3 shootDirection = player.transform.forward;
 
         // Apply force to the puck in the direction the player is facing
-        instance.GetComponent<Rigidbody>().AddForce(shootDirection * 50, ForceMode.Impulse); // Adjust force value as needed
+        instance.GetComponent<Rigidbody>().AddForce(shootDirection * 80, ForceMode.Impulse); // Adjust force value as needed
 
         // Remove puck from player
         if (player == leftPlayer)
@@ -175,7 +210,7 @@ public class PlayerController : MonoBehaviour
         }
 
         var instance = Instantiate(puckPrefab, puckPosition.position, Quaternion.identity);
-        instance.GetComponent<Rigidbody>().AddForce(directionToReceiver * 45, ForceMode.Impulse);
+        instance.GetComponent<Rigidbody>().AddForce(directionToReceiver * 80, ForceMode.Impulse);
         passCoroutine = null;
     }
 

@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 76.71225, y: 27.024012, z: 118.02103, w: 15.336351}
+  m_margin: {x: 72.19494, y: 27.024012, z: 114.23715, w: 15.336351}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1991,7 +1991,7 @@ PrefabInstance:
     - target: {fileID: 4669831943499346401, guid: 47b44fae3d504e44bbe3c37d0a6859be,
         type: 3}
       propertyPath: startTime
-      value: 400
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 4669831943499346401, guid: 47b44fae3d504e44bbe3c37d0a6859be,
         type: 3}
@@ -2687,7 +2687,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2716,7 +2716,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 76.71225, y: 27.036865, z: 118.02103, w: 15.312502}
+  m_margin: {x: 72.26719, y: 27.036865, z: 114.14788, w: 15.312502}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
