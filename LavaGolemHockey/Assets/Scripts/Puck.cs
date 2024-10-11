@@ -60,7 +60,7 @@ public class Puck : MonoBehaviour
     }
 
 
-    void OnGUI()
+    /*void OnGUI()
     {
         if (GUI.Button(new Rect(10, 10, 100, 30), "Forward"))
         {
@@ -78,5 +78,5 @@ public class Puck : MonoBehaviour
         {
             rb.AddForce(new Vector3(-force, 0f, 0f), ForceMode.Impulse);
         }
-    }
+    }*/
 }
