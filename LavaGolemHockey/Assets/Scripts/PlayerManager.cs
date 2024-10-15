@@ -1,8 +1,4 @@
-using JetBrains.Annotations;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +14,9 @@ public class PlayerManager : MonoBehaviour
     public Transform P1Spawn;
     public Transform P2Spawn;
 
-    //testing button
+    public GameObject player1Prefab;
+    public GameObject player2Prefab;
+
     public GameObject singlePlayerTest;
 
     private void Awake()
@@ -36,11 +34,13 @@ public class PlayerManager : MonoBehaviour
         playerInputManager = FindObjectOfType<PlayerInputManager>();
         startingPoints.Add(P1Spawn);
         startingPoints.Add(P2Spawn);
+
+        playerInputManager.playerPrefab = player1Prefab;
     }
 
     private void OnEnable()
     {
-        playerInputManager.onPlayerJoined += AddPlayer; 
+        playerInputManager.onPlayerJoined += AddPlayer;
     }
 
     private void OnDisable()
@@ -54,8 +54,12 @@ public class PlayerManager : MonoBehaviour
         player.transform.position = startingPoints[players.Count - 1].position;
         singlePlayerTest.SetActive(true);
 
-        if (players.Count == 2)
+        if (players.Count == 1)
         {
+            playerInputManager.playerPrefab = player2Prefab;
+        }
+        else if (players.Count == 2)
+        { 
             GameStateManager.Instance.SetGameState(GameStateManager.GameState.Ready);
         }
     }
@@ -75,6 +79,7 @@ public class PlayerManager : MonoBehaviour
             Destroy(player.gameObject);
         }
         players.Clear();
-    }
 
+        playerInputManager.playerPrefab = player1Prefab;
+    }
 }

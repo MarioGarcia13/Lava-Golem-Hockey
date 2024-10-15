@@ -14,7 +14,7 @@ public class PlayerCollisions : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Unsubscribe from GameStateManager events
+        
         if (GameStateManager.Instance != null)
         {
             GameStateManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
