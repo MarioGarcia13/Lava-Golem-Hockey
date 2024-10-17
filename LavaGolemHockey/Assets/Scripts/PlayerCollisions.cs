@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
@@ -7,14 +8,39 @@ public class PlayerCollisions : MonoBehaviour
     public bool hasPuck = false;
     public GameObject puckVisual;
 
+    private Vector3 leftPlayerInitialPosition;
+    private Vector3 rightPlayerInitialPosition;
+
+    private Vector3 p2LeftPlayerInitialPosition;
+    private Vector3 p2RightPlayerInitialPosition;
+
     private void Awake()
     {
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
     }
 
+    private void Start()
+    {
+        if (this.CompareTag("p1L"))
+        {
+            leftPlayerInitialPosition = transform.position;
+        }
+        if (this.CompareTag("p1R"))
+        {
+            rightPlayerInitialPosition = transform.position;
+        }
+        if (this.CompareTag("p2L"))
+        {
+            p2LeftPlayerInitialPosition = transform.position;
+        }
+        if (this.CompareTag("p2R"))
+        {
+            p2RightPlayerInitialPosition = transform.position;
+        }
+    }
+
     private void OnDestroy()
     {
-        
         if (GameStateManager.Instance != null)
         {
             GameStateManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
@@ -25,7 +51,8 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (newState == GameStateManager.GameState.NewRound)
         {
-            puckVisual.SetActive(false);   
+            puckVisual.SetActive(false);
+            ResetPosition();
         }
     }
 
@@ -52,7 +79,24 @@ public class PlayerCollisions : MonoBehaviour
 
     public void ResetPosition()
     {
-        this.transform.position = Vector3.zero;
+        /*this.transform.position = Vector3.zero;*/
+
+        if (this.CompareTag("p1L"))
+        {
+            transform.position = leftPlayerInitialPosition;
+        }
+        if (this.CompareTag("p1R"))
+        {
+            transform.position = rightPlayerInitialPosition;
+        }
+        if (this.CompareTag("p2L"))
+        {
+            transform.position = p2LeftPlayerInitialPosition;
+        }
+        if (this.CompareTag("p2R"))
+        {
+            transform.position = p2RightPlayerInitialPosition;
+        }
     }
 
 }

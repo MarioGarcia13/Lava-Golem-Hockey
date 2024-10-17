@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 8125484666331034117}
   m_Layer: 0
   m_Name: RStick
-  m_TagString: right
+  m_TagString: p1R
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -923,7 +923,7 @@ GameObject:
   - component: {fileID: 3953528028288135565}
   m_Layer: 0
   m_Name: LStick
-  m_TagString: left
+  m_TagString: p1L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

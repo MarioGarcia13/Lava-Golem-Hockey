@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 4694414379476358757}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Player
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 6819892375441181239}
   m_Layer: 0
   m_Name: RStick
-  m_TagString: right
+  m_TagString: p2R
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 8193911668883715678}
   m_Layer: 0
   m_Name: LStick
-  m_TagString: left
+  m_TagString: p2L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

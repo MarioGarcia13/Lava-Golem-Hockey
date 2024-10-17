@@ -22,6 +22,27 @@ public class ScoreBoardManager : MonoBehaviour
     [Range(0f, 400f)]
     public float startTime = 15f;
 
+    /*private void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
+    }
+
+    public void HandleGameStateChanged(GameStateManager.GameState newState)
+    {
+        if (newState == GameStateManager.GameState.NewRound)
+        {
+            timeRemaining = startTime;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (GameStateManager.Instance != null)
+        {
+            GameStateManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
+        }
+    }*/
+
     // Start is called before the first frame update
     void Start()
     {
