@@ -94,6 +94,8 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("Starting a new round.");
         //SetGameState(GameState.NotReady);
+        Destroy(GameObject.Find("PuckLow"));
+        Destroy(GameObject.Find("PuckLow(Clone)"));
         Instantiate(puckPrefab, new Vector3(31,4,0), Quaternion.identity);
         //PlayerManager.Instance.ResetPlayerPositions();
         SetGameState(GameState.Ready);

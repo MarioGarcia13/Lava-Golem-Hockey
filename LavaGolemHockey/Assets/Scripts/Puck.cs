@@ -14,6 +14,7 @@ public class Puck : MonoBehaviour
     public float force;
     public PhysicMaterial puckPhysicsMaterial;
     Rigidbody rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -58,25 +59,4 @@ public class Puck : MonoBehaviour
     {
        rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
     }
-
-
-    /*void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 100, 30), "Forward"))
-        {
-            rb.AddForce(new Vector3(force, 0f, 0f), ForceMode.Impulse);
-        }
-        if (GUI.Button(new Rect(10, 50, 100, 30), "Up"))
-        {
-            rb.AddForce(new Vector3(0f, 0f, force), ForceMode.Impulse);
-        }
-        if (GUI.Button(new Rect(10, 90, 100, 30), "Down"))
-        {
-            rb.AddForce(new Vector3(0f, 0f, -force), ForceMode.Impulse);
-        }
-        if (GUI.Button(new Rect(10, 130, 100, 30), "Backwards"))
-        {
-            rb.AddForce(new Vector3(-force, 0f, 0f), ForceMode.Impulse);
-        }
-    }*/
 }
