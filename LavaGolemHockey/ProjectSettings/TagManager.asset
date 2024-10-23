@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Puck
+  - right
+  - left
+  - Goal2
+  - Goal1
+  - Player2
+  - p1L
+  - p1R
+  - p2L
+  - p2R
   layers:
   - Default
   - TransparentFX

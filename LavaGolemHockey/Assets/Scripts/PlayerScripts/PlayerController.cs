@@ -41,24 +41,32 @@ public class PlayerController : MonoBehaviour
     private Coroutine passCoroutine;
     private bool canControl = false;
 
-    private Vector3 leftPlayerInitialPosition;
+    /*private Vector3 leftPlayerInitialPosition;
     private Vector3 rightPlayerInitialPosition;
+
+    private Vector3 p2LeftPlayerInitialPosition;
+    private Vector3 p2RightPlayerInitialPosition;*/
 
     
 
     private void Awake()
-    {
+    {/*
         leftPlayerInitialPosition = leftRB.position;
         rightPlayerInitialPosition = rightRB.position;
-        
-
+        */
+        /*leftRB = leftPlayer.GetComponent<Rigidbody>();
+        rightRB = rightPlayer.GetComponent<Rigidbody>();*/
         inputAsset = this.GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("PlayerControls");
-        leftRB = leftPlayer.GetComponent<Rigidbody>();
-        rightRB = rightPlayer.GetComponent<Rigidbody>();
 
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
 
+    }
+
+    private void Start()
+    {
+        leftRB = leftPlayer.GetComponent<Rigidbody>();
+        rightRB = rightPlayer.GetComponent<Rigidbody>();
     }
 
     private void OnDestroy()
@@ -73,8 +81,9 @@ public class PlayerController : MonoBehaviour
     public void ResetPlayerPositions()
     {
         // Reset positions
-        leftRB.position = leftPlayerInitialPosition;
-        rightRB.position = rightPlayerInitialPosition;
+        /*leftRB.position = leftPlayerInitialPosition;
+        rightRB.position = rightPlayerInitialPosition;*/
+        
 
         // Reset velocities
         leftRB.velocity = Vector3.zero;
