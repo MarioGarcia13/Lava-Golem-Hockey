@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4715,12 +4715,12 @@ PrefabInstance:
     - target: {fileID: 1354770289994845844, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1354770289994845844, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.2901961
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1354770289994845844, guid: ffcb3717021f47741ad1ede4af8364f3,
         type: 3}
@@ -4767,6 +4767,11 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxGradient.m_ColorSpace
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7361642431135081816, guid: ffcb3717021f47741ad1ede4af8364f3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
