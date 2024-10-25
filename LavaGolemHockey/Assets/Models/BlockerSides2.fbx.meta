@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d1e0076005a08c54694ccd6b8014cdfa
+guid: 244f04bf155a8bf4ebf450ef9aca9c56
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Arena_mat
-    second: {fileID: 2100000, guid: 192e44f1b05305d478396acf93e2be24, type: 2}
+    second: {fileID: 2100000, guid: 725d399f94c3ec84c8c2fa051075d49a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
