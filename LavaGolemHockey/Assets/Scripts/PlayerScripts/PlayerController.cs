@@ -193,6 +193,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Tackle(GameObject player)
+    {
+        if (player == leftPlayer)
+        {
+
+        }
+        else if (player == rightPlayer)
+        {
+
+        }
+    }
+
     private IEnumerator HandlePass(GameObject passer, GameObject receiver, Transform puckPosition)
     {
         Vector3 directionToReceiver = (receiver.transform.position - passer.transform.position).normalized;
@@ -262,6 +274,10 @@ public class PlayerController : MonoBehaviour
         {
             ShootPuck(leftPlayer, leftPuckPos);
         }
+        else
+        {
+
+        }
 
     }
     
@@ -270,6 +286,10 @@ public class PlayerController : MonoBehaviour
         if (canControl && rightPlayerHasPuck)
         {
             ShootPuck(rightPlayer, rightPuckPos);
+        }
+        else
+        {
+
         }
     }
 }

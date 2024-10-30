@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4832067955121527624}
   - component: {fileID: 1056713594817134049}
   - component: {fileID: 2762818076599896078}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InsideRing_standard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -949,7 +949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3281792012364738964}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: P2-ShootingRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 3037765231304129183}
   - component: {fileID: 4803974879976595730}
   - component: {fileID: 1257127944425961713}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1067,7 +1067,7 @@ GameObject:
   - component: {fileID: 4899273200604137672}
   - component: {fileID: 3536443754080844179}
   - component: {fileID: 3703768154585566489}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skate2_Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1399,7 +1399,7 @@ GameObject:
   - component: {fileID: 8595496173034747372}
   - component: {fileID: 8344849136728926096}
   - component: {fileID: 1195733968170923945}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GloveFail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1634,7 +1634,7 @@ GameObject:
   - component: {fileID: 5554823677211438415}
   - component: {fileID: 7385303726932461209}
   - component: {fileID: 5267906282642049355}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LStick
   m_TagString: p2L
   m_Icon: {fileID: 0}
@@ -1988,7 +1988,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2671239407170945829}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HockeyStick1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2022,7 +2022,7 @@ GameObject:
   - component: {fileID: 8343449545180252980}
   - component: {fileID: 5793614084805277870}
   - component: {fileID: 5892445289632579540}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skate3_Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2296,7 +2296,7 @@ GameObject:
   - component: {fileID: 3319277790135885729}
   - component: {fileID: 2092943530816321552}
   - component: {fileID: 6619674207687109221}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Golem1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2412,7 +2412,7 @@ GameObject:
   - component: {fileID: 1296654373569801695}
   - component: {fileID: 4884418800634403946}
   - component: {fileID: 4727430783648543311}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pCube39
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2578,7 +2578,7 @@ GameObject:
   - component: {fileID: 3226881393796737918}
   - component: {fileID: 2375157706136981448}
   - component: {fileID: 983110065439496066}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GloveFail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2744,7 +2744,7 @@ GameObject:
   - component: {fileID: 7190630954413737440}
   - component: {fileID: 5353740151523312033}
   - component: {fileID: 6824792648510679986}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PuckLow
   m_TagString: Puck
   m_Icon: {fileID: 0}
@@ -2827,7 +2827,7 @@ GameObject:
   - component: {fileID: 4108541658252601370}
   - component: {fileID: 4087781267498496763}
   - component: {fileID: 2930992388587942242}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OutsideRing_standard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2910,7 +2910,7 @@ GameObject:
   - component: {fileID: 1327842801133444228}
   - component: {fileID: 3658540469557801739}
   - component: {fileID: 4240083246293347627}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Jersey3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
