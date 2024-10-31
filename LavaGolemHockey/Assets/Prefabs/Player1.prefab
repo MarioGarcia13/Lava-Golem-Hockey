@@ -1868,7 +1868,7 @@ MonoBehaviour:
     m_ActionId: 6e58c96b-956c-41c0-9279-22bf1aca36b8
     m_ActionName: PlayerControls/RightShootTackle[/DualSenseGamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

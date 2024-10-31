@@ -157,12 +157,15 @@ public class PlayerController : MonoBehaviour
         {
             leftRB.velocity = leftRB.velocity / 2;
             leftPlayerHasPuck = true;
+            Debug.Log("left player has puck");
             rightPlayerHasPuck = false;
         }
         else if (Vector3.Distance(rightPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
-           //reduce velocity
+            //reduce velocity
+            rightRB.velocity = rightRB.velocity / 2;
             rightPlayerHasPuck = true;
+            Debug.Log("right player has puck");
             leftPlayerHasPuck = false;
         }
     }
@@ -183,26 +186,33 @@ public class PlayerController : MonoBehaviour
         {
             leftPlayerHasPuck = false;
             leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
-            Debug.Log("Left player shot the puck");
+            //Debug.Log("Left player shot the puck");
         }
         else if (player == rightPlayer)
         {
             rightPlayerHasPuck = false;
             rightPlayer.GetComponent<PlayerCollisions>().RemovePuck();
-            Debug.Log("Right player shot the puck");
+            //Debug.Log("Right player shot the puck");
         }
     }
 
-    private void Tackle(GameObject player)
+    private void TacklePlayer(Rigidbody playerRigidbody, GameObject player)
     {
-        if (player == leftPlayer)
+        // Lunge logic
+        if (player == leftPlayer && !leftPlayerHasPuck)
         {
-
+            Vector3 lungeDirection = playerRigidbody.transform.forward;
+            float lungeForce = 20f; // Adjust this value to control lunge strength
+            playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
         }
-        else if (player == rightPlayer)
+        else if (player == rightPlayer && !rightPlayerHasPuck)
         {
-
+            Vector3 lungeDirection = playerRigidbody.transform.forward;
+            float lungeForce = 20f; // Adjust this value to control lunge strength
+            playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
         }
+        
+        
     }
 
     private IEnumerator HandlePass(GameObject passer, GameObject receiver, Transform puckPosition)
@@ -220,13 +230,13 @@ public class PlayerController : MonoBehaviour
         if (passer == leftPlayer)
         {
             leftPlayerHasPuck = false;
-            Debug.Log("Left player passed");
+            //Debug.Log("Left player passed");
             leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
         }
         else if (passer == rightPlayer)
         {
             rightPlayerHasPuck = false;
-            Debug.Log("Right player passed");
+            //Debug.Log("Right player passed");
             rightPlayer.GetComponent<PlayerCollisions>().RemovePuck();
         }
 
@@ -270,26 +280,30 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftShootTackle(InputAction.CallbackContext ctx)
     {
-        if (canControl && leftPlayerHasPuck)
+        if (ctx.performed && canControl && leftPlayerHasPuck)
         {
             ShootPuck(leftPlayer, leftPuckPos);
+            //Debug.Log("Fired");
         }
-        else
+        else if(ctx.performed && canControl && !leftPlayerHasPuck)
         {
-
+            TacklePlayer(leftRB, leftPlayer);
+            //Debug.Log("Tackled");
         }
 
     }
-    
+
     public void OnRightShootTackle(InputAction.CallbackContext ctx)
     {
-        if (canControl && rightPlayerHasPuck)
+        if (ctx.performed && canControl && rightPlayerHasPuck)
         {
             ShootPuck(rightPlayer, rightPuckPos);
+            //Debug.Log("Fired");
         }
-        else
+        else if (ctx.performed && canControl && !leftPlayerHasPuck)
         {
-
+            TacklePlayer(rightRB, rightPlayer);
+            //Debug.Log("Tackled");
         }
     }
 }

@@ -337,7 +337,7 @@ MonoBehaviour:
     m_ActionId: 6e58c96b-956c-41c0-9279-22bf1aca36b8
     m_ActionName: PlayerControls/RightShootTackle[/DualSenseGamepadHID/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -1685,8 +1685,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6.417129
-  m_Height: 16.406244
+  m_Radius: 9
+  m_Height: 36.5746
   m_Direction: 1
   m_Center: {x: 0, y: 7.203122, z: 0}
 --- !u!114 &7385303726932461209
@@ -2240,8 +2240,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6.417129
-  m_Height: 16.406244
+  m_Radius: 9
+  m_Height: 36.5746
   m_Direction: 1
   m_Center: {x: 0, y: 7.203122, z: 0}
 --- !u!114 &4460205193180092766
