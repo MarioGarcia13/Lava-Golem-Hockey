@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         leftRB.velocity = Vector3.zero;
         rightRB.velocity = Vector3.zero;
 
-        // Reset rotations (optional, remove if you don't want to reset rotation)
+        // Reset rotations
         leftRB.rotation = Quaternion.identity;
         rightRB.rotation = Quaternion.identity;
 

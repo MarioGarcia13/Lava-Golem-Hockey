@@ -5,6 +5,8 @@ using TMPro;
 using Unity.VisualScripting;
 public class ScoreBoardManager : MonoBehaviour
 {
+    //public static ScoreBoardManager instance;
+
     [SerializeField] 
     public TMP_Text ScoreDisplay1;
     [SerializeField] 
@@ -22,8 +24,11 @@ public class ScoreBoardManager : MonoBehaviour
     [Range(0f, 400f)]
     public float startTime = 15f;
 
-    /*private void Awake()
+    public bool goalScored = false;
+
+    private void Start()
     {
+        timeRemaining = startTime;
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
     }
 
@@ -41,13 +46,13 @@ public class ScoreBoardManager : MonoBehaviour
         {
             GameStateManager.Instance.OnGameStateChanged -= HandleGameStateChanged;
         }
-    }*/
+    }
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         timeRemaining = startTime;
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -59,11 +64,12 @@ public class ScoreBoardManager : MonoBehaviour
         }
         else
         {
-            timeRemaining = 0;
-            UpdateTimerDisplay();
-            GameStateManager.Instance.SetGameState(GameStateManager.GameState.NewRound);
-            roundNum++;
-            timeRemaining = startTime;
+            RoundEnded();
+        }
+
+        if (goalScored)
+        {
+            RoundEnded();
         }
 
         if (Puck.goal1Scored)
@@ -84,6 +90,7 @@ public class ScoreBoardManager : MonoBehaviour
         {
             roundNum++;
             Puck.nextRound = false;
+            UpdateTimerDisplay();
         }
 
         //update round
@@ -94,6 +101,15 @@ public class ScoreBoardManager : MonoBehaviour
 
         //update player 2 score
         ScoreDisplay2.SetText(score2.ToString());
+    }
+
+    public void RoundEnded()
+    {
+        timeRemaining = 0;
+        UpdateTimerDisplay();
+        GameStateManager.Instance.SetGameState(GameStateManager.GameState.NewRound);
+        roundNum++;
+        timeRemaining = startTime;
     }
 
     void UpdateTimerDisplay()

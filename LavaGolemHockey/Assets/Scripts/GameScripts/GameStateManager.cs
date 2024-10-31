@@ -99,9 +99,6 @@ public class GameStateManager : MonoBehaviour
         Instantiate(puckPrefab, new Vector3(31,4,0), Quaternion.identity);
         //PlayerManager.Instance.ResetPlayerPositions();
         SetGameState(GameState.Ready);
-
-        // Add logic for starting a new round
-
     }
 
     private void HandleResetGame()
@@ -109,6 +106,5 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("Resetting the game.");
         PlayerManager.Instance.ClearPlayers();
         SetGameState(GameState.NotReady );
-        // Add logic for resetting the entire game
     }
 }
