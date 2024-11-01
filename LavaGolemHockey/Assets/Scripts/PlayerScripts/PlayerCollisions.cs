@@ -65,6 +65,11 @@ public class PlayerCollisions : MonoBehaviour
             Destroy(collision.gameObject);
             transform.parent.GetComponent<PlayerController>().CollisionDetected(this);
         }
+
+        if (collision.gameObject.CompareTag("p1L") /*&& isTackling*/)
+        {
+
+        }
     }
 
     public void RemovePuck()
@@ -97,6 +102,12 @@ public class PlayerCollisions : MonoBehaviour
         {
             transform.position = p2RightPlayerInitialPosition;
         }
+    }
+
+    IEnumerator tackleTimer()
+    {
+        yield return new WaitForSeconds(1f);
+
     }
 
 }
