@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     [Range(1f, 100f)]
     public float rotationSpeed = 10f;
 
+    float lungeForce = 20f;
+
     private Vector2 movementInputLeft;
     private Vector2 movementInputRight;
 
@@ -201,14 +203,14 @@ public class PlayerController : MonoBehaviour
         // Lunge logic
         if (player == leftPlayer && !leftPlayerHasPuck)
         {
+            GetComponent<PlayerCollisions>().isTackling = true;
             Vector3 lungeDirection = playerRigidbody.transform.forward;
-            float lungeForce = 20f; // Adjust this value to control lunge strength
             playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
         }
         else if (player == rightPlayer && !rightPlayerHasPuck)
         {
+            GetComponent<PlayerCollisions>().isTackling = true;
             Vector3 lungeDirection = playerRigidbody.transform.forward;
-            float lungeForce = 20f; // Adjust this value to control lunge strength
             playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
         }
         

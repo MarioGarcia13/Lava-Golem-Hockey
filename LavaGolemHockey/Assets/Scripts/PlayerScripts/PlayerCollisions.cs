@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
+    public bool isTackling = false;
     public bool hasPuck = false;
     public GameObject puckVisual;
 
@@ -24,6 +25,7 @@ public class PlayerCollisions : MonoBehaviour
         if (this.CompareTag("p1L"))
         {
             leftPlayerInitialPosition = transform.position;
+            Debug.Log("Tackled");
         }
         if (this.CompareTag("p1R"))
         {
@@ -66,7 +68,19 @@ public class PlayerCollisions : MonoBehaviour
             transform.parent.GetComponent<PlayerController>().CollisionDetected(this);
         }
 
-        if (collision.gameObject.CompareTag("p1L") /*&& isTackling*/)
+        if (collision.gameObject.CompareTag("p1L") && isTackling)
+        {
+            collision.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("p1R") /*&& isTackling*/)
+        {
+
+        }
+        if (collision.gameObject.CompareTag("p2L") /*&& isTackling*/)
+        {
+
+        }
+        if (collision.gameObject.CompareTag("p2R") /*&& isTackling*/)
         {
 
         }
