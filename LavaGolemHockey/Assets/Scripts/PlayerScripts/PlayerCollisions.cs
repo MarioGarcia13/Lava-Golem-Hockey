@@ -25,7 +25,7 @@ public class PlayerCollisions : MonoBehaviour
         if (this.CompareTag("p1L"))
         {
             leftPlayerInitialPosition = transform.position;
-            Debug.Log("Tackled");
+            
         }
         if (this.CompareTag("p1R"))
         {
@@ -68,21 +68,53 @@ public class PlayerCollisions : MonoBehaviour
             transform.parent.GetComponent<PlayerController>().CollisionDetected(this);
         }
 
-        if (collision.gameObject.CompareTag("p1L") && isTackling)
+        if (this.gameObject.CompareTag("p1L"))
         {
-            collision.gameObject.SetActive(false);
-        }
-        if (collision.gameObject.CompareTag("p1R") /*&& isTackling*/)
-        {
+            if (collision.gameObject.CompareTag("p2L") && isTackling)
+            {
+                Debug.Log("Tackled P2L");
 
+            }
+            if (collision.gameObject.CompareTag("p2R") && isTackling)
+            {
+                Debug.Log("Tackled P2R"); 
+            }
         }
-        if (collision.gameObject.CompareTag("p2L") /*&& isTackling*/)
+        if (this.gameObject.CompareTag("p1R"))
         {
+            if (collision.gameObject.CompareTag("p2L") && isTackling)
+            {
+                Debug.Log("Tackled P2L");
 
+            }
+            if (collision.gameObject.CompareTag("p2R") && isTackling)
+            {
+                Debug.Log("Tackled P2R");
+            }
         }
-        if (collision.gameObject.CompareTag("p2R") /*&& isTackling*/)
+        if (this.gameObject.CompareTag("p2L"))
         {
+            if (collision.gameObject.CompareTag("p1L") && isTackling)
+            {
+                Debug.Log("Tackled P1L");
 
+            }
+            if (collision.gameObject.CompareTag("p1R") && isTackling)
+            {
+                Debug.Log("Tackled P1R");
+            }
+        }
+        if (this.gameObject.CompareTag("p2R"))
+        {
+            if (collision.gameObject.CompareTag("p1L") && isTackling)
+            {
+                Debug.Log("Tackled P1L");
+
+            }
+            if (collision.gameObject.CompareTag("p1R") && isTackling)
+            {
+                Debug.Log("Tackled P1R");
+            }
         }
     }
 

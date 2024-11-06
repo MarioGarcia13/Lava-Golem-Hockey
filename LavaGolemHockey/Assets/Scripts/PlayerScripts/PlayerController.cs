@@ -203,13 +203,13 @@ public class PlayerController : MonoBehaviour
         // Lunge logic
         if (player == leftPlayer && !leftPlayerHasPuck)
         {
-            GetComponent<PlayerCollisions>().isTackling = true;
+            leftPlayer.GetComponent<PlayerCollisions>().isTackling = true;
             Vector3 lungeDirection = playerRigidbody.transform.forward;
             playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
         }
         else if (player == rightPlayer && !rightPlayerHasPuck)
         {
-            GetComponent<PlayerCollisions>().isTackling = true;
+            rightPlayer.GetComponent<PlayerCollisions>().isTackling = true;
             Vector3 lungeDirection = playerRigidbody.transform.forward;
             playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
         }
