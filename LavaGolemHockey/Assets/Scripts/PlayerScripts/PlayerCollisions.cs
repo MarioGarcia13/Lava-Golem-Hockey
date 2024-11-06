@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using Unity.VisualScripting;
+using UnityEditor.Overlays;
 using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
@@ -8,37 +10,28 @@ public class PlayerCollisions : MonoBehaviour
     public bool isTackling = false;
     public bool hasPuck = false;
     public GameObject puckVisual;
+    public GameObject puckPrefab;
 
-    private Vector3 leftPlayerInitialPosition;
-    private Vector3 rightPlayerInitialPosition;
+    [Range(0f, 3f)]
+    public float stunTime = 1.5f;
 
-    private Vector3 p2LeftPlayerInitialPosition;
-    private Vector3 p2RightPlayerInitialPosition;
+    private Vector3 initialPosition;
+    private PlayerController playerController;
+    private Rigidbody rb;
+    public bool isStunned = false;
+
+    public BoxCollider tackleCollider;
 
     private void Awake()
     {
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
+        playerController = transform.parent.GetComponent<PlayerController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
-        if (this.CompareTag("p1L"))
-        {
-            leftPlayerInitialPosition = transform.position;
-            
-        }
-        if (this.CompareTag("p1R"))
-        {
-            rightPlayerInitialPosition = transform.position;
-        }
-        if (this.CompareTag("p2L"))
-        {
-            p2LeftPlayerInitialPosition = transform.position;
-        }
-        if (this.CompareTag("p2R"))
-        {
-            p2RightPlayerInitialPosition = transform.position;
-        }
+        initialPosition = transform.position;
     }
 
     private void OnDestroy()
@@ -53,69 +46,75 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (newState == GameStateManager.GameState.NewRound)
         {
-            puckVisual.SetActive(false);
-            ResetPosition();
+            ResetPlayer();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        PlayerCollisions otherPlayer = other.gameObject.GetComponent<PlayerCollisions>();
+        if (otherPlayer != null && isTackling && !isStunned)
+        {
+            if (otherPlayer.hasPuck)
+            {
+                TacklePlayer(otherPlayer);
+            }
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Puck"))
+        if (collision.gameObject.CompareTag("Puck") && !isStunned)
         {
-            hasPuck = true;
-            puckVisual.SetActive(true);
-            Destroy(collision.gameObject);
-            transform.parent.GetComponent<PlayerController>().CollisionDetected(this);
+            PickUpPuck(collision.gameObject);
         }
+    }
 
-        if (this.gameObject.CompareTag("p1L"))
+    private void PickUpPuck(GameObject puck)
+    {
+        hasPuck = true;
+        puckVisual.SetActive(true);
+        Destroy(puck);
+        playerController.UpdatePuckStatus(this);
+    }
+
+    private void TacklePlayer(PlayerCollisions tackledPlayer)
+    {
+        if (tackledPlayer.hasPuck)
         {
-            if (collision.gameObject.CompareTag("p2L") && isTackling)
-            {
-                Debug.Log("Tackled P2L");
-
-            }
-            if (collision.gameObject.CompareTag("p2R") && isTackling)
-            {
-                Debug.Log("Tackled P2R"); 
-            }
+            tackledPlayer.DropPuck();
+            StartCoroutine(StunPlayer(tackledPlayer));
         }
-        if (this.gameObject.CompareTag("p1R"))
+    }
+
+    public void DropPuck()
+    {
+        if (hasPuck)
         {
-            if (collision.gameObject.CompareTag("p2L") && isTackling)
-            {
-                Debug.Log("Tackled P2L");
-
-            }
-            if (collision.gameObject.CompareTag("p2R") && isTackling)
-            {
-                Debug.Log("Tackled P2R");
-            }
+            hasPuck = false;
+            puckVisual.SetActive(false);
+            Instantiate(puckPrefab, transform.position, Quaternion.identity);
+            playerController.UpdatePuckStatus(this);
         }
-        if (this.gameObject.CompareTag("p2L"))
-        {
-            if (collision.gameObject.CompareTag("p1L") && isTackling)
-            {
-                Debug.Log("Tackled P1L");
+    }
 
-            }
-            if (collision.gameObject.CompareTag("p1R") && isTackling)
-            {
-                Debug.Log("Tackled P1R");
-            }
-        }
-        if (this.gameObject.CompareTag("p2R"))
-        {
-            if (collision.gameObject.CompareTag("p1L") && isTackling)
-            {
-                Debug.Log("Tackled P1L");
+    private IEnumerator StunPlayer(PlayerCollisions player)
+    {
+        player.isStunned = true;
+        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            }
-            if (collision.gameObject.CompareTag("p1R") && isTackling)
-            {
-                Debug.Log("Tackled P1R");
-            }
-        }
+        yield return new WaitForSeconds(stunTime);
+
+        player.isStunned = false;
+    }
+
+    public void ResetPlayer()
+    {
+        transform.position = initialPosition;
+        hasPuck = false;
+        puckVisual.SetActive(false);
+        isStunned = false;
+        rb.isKinematic = false;
     }
 
     public void RemovePuck()
@@ -127,33 +126,4 @@ public class PlayerCollisions : MonoBehaviour
             puckVisual.SetActive(false);
         }
     }
-
-    public void ResetPosition()
-    {
-        /*this.transform.position = Vector3.zero;*/
-
-        if (this.CompareTag("p1L"))
-        {
-            transform.position = leftPlayerInitialPosition;
-        }
-        if (this.CompareTag("p1R"))
-        {
-            transform.position = rightPlayerInitialPosition;
-        }
-        if (this.CompareTag("p2L"))
-        {
-            transform.position = p2LeftPlayerInitialPosition;
-        }
-        if (this.CompareTag("p2R"))
-        {
-            transform.position = p2RightPlayerInitialPosition;
-        }
-    }
-
-    IEnumerator tackleTimer()
-    {
-        yield return new WaitForSeconds(1f);
-
-    }
-
 }

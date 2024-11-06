@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     public Transform rightPuckPos;
     public Rigidbody rightRB;
 
+    [Range(0f, 3f)]
+    public float tackleResetTime = 0.5f;
+
     public GameObject puckPrefab;
     [SerializeField]
     private bool leftPlayerHasPuck = false;
@@ -127,9 +130,24 @@ public class PlayerController : MonoBehaviour
             MovePlayer(rightRB, movementInputRight);
         }
     }
+    public void UpdatePuckStatus(PlayerCollisions player)
+    {
+        if (player.gameObject == leftPlayer)
+        { 
+            leftPlayerHasPuck = player.hasPuck;
+        }
+        else if (player.gameObject == rightPlayer)
+        {
+            rightPlayerHasPuck = player.hasPuck;
+        }
+    }
 
     private void MovePlayer(Rigidbody playerRigidbody, Vector2 movementInput)
     {
+        PlayerCollisions playerCollisions = playerRigidbody.GetComponent<PlayerCollisions>();
+        if (playerCollisions.isStunned)
+            return;
+
         // Convert input to 3D vector
         Vector3 movement = new Vector3(movementInput.x, 0, movementInput.y);
 
@@ -181,7 +199,7 @@ public class PlayerController : MonoBehaviour
         Vector3 shootDirection = player.transform.forward;
 
         // Apply force to the puck in the direction the player is facing
-        instance.GetComponent<Rigidbody>().AddForce(shootDirection * 80, ForceMode.Impulse); // Adjust force value as needed
+        instance.GetComponent<Rigidbody>().AddForce(shootDirection * 80, ForceMode.Impulse);
 
         // Remove puck from player
         if (player == leftPlayer)
@@ -200,21 +218,22 @@ public class PlayerController : MonoBehaviour
 
     private void TacklePlayer(Rigidbody playerRigidbody, GameObject player)
     {
-        // Lunge logic
-        if (player == leftPlayer && !leftPlayerHasPuck)
+        PlayerCollisions playerCollisions = player.GetComponent<PlayerCollisions>();
+        if (!playerCollisions.hasPuck)
         {
-            leftPlayer.GetComponent<PlayerCollisions>().isTackling = true;
+            playerCollisions.isTackling = true;
+            playerCollisions.tackleCollider.enabled = true;
             Vector3 lungeDirection = playerRigidbody.transform.forward;
             playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
+            StartCoroutine(ResetTackle(playerCollisions));
         }
-        else if (player == rightPlayer && !rightPlayerHasPuck)
-        {
-            rightPlayer.GetComponent<PlayerCollisions>().isTackling = true;
-            Vector3 lungeDirection = playerRigidbody.transform.forward;
-            playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
-        }
-        
-        
+    }
+
+    private IEnumerator ResetTackle(PlayerCollisions playerCollisions)
+    {
+        yield return new WaitForSeconds(tackleResetTime); 
+        playerCollisions.isTackling = false;
+        playerCollisions.tackleCollider.enabled = false;
     }
 
     private IEnumerator HandlePass(GameObject passer, GameObject receiver, Transform puckPosition)
@@ -282,30 +301,31 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftShootTackle(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && canControl && leftPlayerHasPuck)
+        if (ctx.performed && canControl)
         {
-            ShootPuck(leftPlayer, leftPuckPos);
-            //Debug.Log("Fired");
+            if (leftPlayerHasPuck)
+            {
+                ShootPuck(leftPlayer, leftPuckPos);
+            }
+            else
+            {
+                TacklePlayer(leftRB, leftPlayer);
+            }
         }
-        else if(ctx.performed && canControl && !leftPlayerHasPuck)
-        {
-            TacklePlayer(leftRB, leftPlayer);
-            //Debug.Log("Tackled");
-        }
-
     }
 
     public void OnRightShootTackle(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && canControl && rightPlayerHasPuck)
+        if (ctx.performed && canControl)
         {
-            ShootPuck(rightPlayer, rightPuckPos);
-            //Debug.Log("Fired");
-        }
-        else if (ctx.performed && canControl && !leftPlayerHasPuck)
-        {
-            TacklePlayer(rightRB, rightPlayer);
-            //Debug.Log("Tackled");
+            if (rightPlayerHasPuck)
+            {
+                ShootPuck(rightPlayer, rightPuckPos);
+            }
+            else
+            {
+                TacklePlayer(rightRB, rightPlayer);
+            }
         }
     }
 }

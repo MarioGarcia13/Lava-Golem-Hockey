@@ -505,6 +505,10 @@ MonoBehaviour:
   isTackling: 0
   hasPuck: 0
   puckVisual: {fileID: 3433209897218148013}
+  puckPrefab: {fileID: 143487984517241902, guid: ffcb3717021f47741ad1ede4af8364f3,
+    type: 3}
+  isStunned: 0
+  tackleCollider: {fileID: 8227708768496501141}
 --- !u!136 &3198188894102274688
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1106,6 +1110,9 @@ MonoBehaviour:
   isTackling: 0
   hasPuck: 0
   puckVisual: {fileID: 3130086865763427958}
+  puckPrefab: {fileID: 0}
+  isStunned: 0
+  tackleCollider: {fileID: 0}
 --- !u!136 &8125484666331034117
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1518,6 +1525,10 @@ MonoBehaviour:
   isTackling: 0
   hasPuck: 0
   puckVisual: {fileID: 6552029350703002948}
+  puckPrefab: {fileID: 143487984517241902, guid: ffcb3717021f47741ad1ede4af8364f3,
+    type: 3}
+  isStunned: 0
+  tackleCollider: {fileID: 1769269580285790522}
 --- !u!136 &1297648738409116527
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1845,6 +1856,7 @@ MonoBehaviour:
   rightPlayer: {fileID: 2689874426414573704}
   rightPuckPos: {fileID: 7510019545428951318}
   rightRB: {fileID: 3705697667521676400}
+  tackleResetTime: 0.5
   puckPrefab: {fileID: 143487984517241902, guid: ffcb3717021f47741ad1ede4af8364f3,
     type: 3}
   leftPlayerHasPuck: 0
@@ -2592,6 +2604,9 @@ MonoBehaviour:
   isTackling: 0
   hasPuck: 0
   puckVisual: {fileID: 6552029350703002948}
+  puckPrefab: {fileID: 0}
+  isStunned: 0
+  tackleCollider: {fileID: 0}
 --- !u!136 &3953528028288135565
 CapsuleCollider:
   m_ObjectHideFlags: 0
