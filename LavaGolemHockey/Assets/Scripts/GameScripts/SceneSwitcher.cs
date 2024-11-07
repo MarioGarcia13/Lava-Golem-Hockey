@@ -1,4 +1,3 @@
-using JetBrains.Rider.Unity.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,7 +57,7 @@ public class SceneSwitcher : MonoBehaviour
     public void GameScene()
     {
         HideMenu();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void ShowWinScreenP1()
@@ -78,7 +77,7 @@ public class SceneSwitcher : MonoBehaviour
         WinScreenP1.SetActive(true);
         yield return new WaitForSeconds(WinScreenTime);
         WinScreenP1.SetActive(false);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator P2Timer()
@@ -86,6 +85,6 @@ public class SceneSwitcher : MonoBehaviour
         WinScreenP2.SetActive(true);
         yield return new WaitForSeconds(WinScreenTime);
         WinScreenP2.SetActive(false);   
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
