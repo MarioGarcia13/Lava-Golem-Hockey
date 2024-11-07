@@ -55,10 +55,7 @@ public class PlayerCollisions : MonoBehaviour
         PlayerCollisions otherPlayer = other.gameObject.GetComponent<PlayerCollisions>();
         if (otherPlayer != null && isTackling && !isStunned)
         {
-            if (otherPlayer.hasPuck)
-            {
-                TacklePlayer(otherPlayer);
-            }
+            TacklePlayer(otherPlayer);
         }
     }
 
@@ -82,8 +79,8 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (tackledPlayer.hasPuck)
         {
-            tackledPlayer.DropPuck();
-            StartCoroutine(StunPlayer(tackledPlayer));
+            Vector3 tackleDirection = (tackledPlayer.transform.position - transform.position).normalized;
+            tackledPlayer.GetTackled(tackleDirection * 10f); // force
         }
     }
 
@@ -98,14 +95,24 @@ public class PlayerCollisions : MonoBehaviour
         }
     }
 
-    private IEnumerator StunPlayer(PlayerCollisions player)
+    private IEnumerator StunPlayer()
     {
-        player.isStunned = true;
-        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
+        isStunned = true;
         yield return new WaitForSeconds(stunTime);
+        isStunned = false;
+    }
 
-        player.isStunned = false;
+    public void GetTackled(Vector3 force)
+    {
+        if (!isStunned)
+        {
+            rb.AddForce(force, ForceMode.Impulse);
+            if (hasPuck)
+            {
+                DropPuck();
+            }
+            StartCoroutine(StunPlayer());
+        }
     }
 
     public void ResetPlayer()

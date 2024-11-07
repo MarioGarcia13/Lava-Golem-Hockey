@@ -222,10 +222,19 @@ public class PlayerController : MonoBehaviour
         if (!playerCollisions.hasPuck)
         {
             playerCollisions.isTackling = true;
-            playerCollisions.tackleCollider.enabled = true;
             Vector3 lungeDirection = playerRigidbody.transform.forward;
             playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
-            StartCoroutine(ResetTackle(playerCollisions));
+
+            //raycast to detect the tackled player
+            RaycastHit hit;
+            if (Physics.Raycast(player.transform.position, lungeDirection, out hit, 2f))
+            {
+                PlayerCollisions tackledPlayer = hit.collider.GetComponent<PlayerCollisions>();
+                if (tackledPlayer != null && tackledPlayer.gameObject != player)
+                {
+                    tackledPlayer.GetTackled(lungeDirection * lungeForce);
+                }
+            }
         }
     }
 
