@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem.XR.Haptics;
+using UnityEngine.UI;
 public class ScoreBoardManager : MonoBehaviour
 {
     //public static ScoreBoardManager instance;
+    
+    public SceneSwitcher sceneSwitch;
+    public PlayerManager playerManager;
 
     [SerializeField] 
     public TMP_Text ScoreDisplay1;
@@ -16,9 +21,13 @@ public class ScoreBoardManager : MonoBehaviour
     [SerializeField]
     public TMP_Text TimerCountdown;
 
+    //Score Variables
     public int score1 = 0;
     public int score2 = 0;
     public int roundNum = 1;
+
+    [Range(0f, 6)]
+    public int scoreLimit = 6;
     
     public float timeRemaining;
     [Range(0f, 400f)]
@@ -27,7 +36,8 @@ public class ScoreBoardManager : MonoBehaviour
     public bool goalScored = false;
 
     private void Start()
-    {
+    {   
+        sceneSwitch = FindAnyObjectByType<SceneSwitcher>();
         timeRemaining = startTime;
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
     }
@@ -57,6 +67,21 @@ public class ScoreBoardManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (score1 == scoreLimit)
+        {
+            playerManager.ClearPlayers();
+            sceneSwitch.ShowWinScreenP1();
+            score1 = 0;
+            score2 = 0;
+        }
+        if (score2 == scoreLimit)
+        {
+            playerManager.ClearPlayers();
+            sceneSwitch.ShowWinScreenP2();
+            score1 = 0;
+            score2 = 0;
+        }
+
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;

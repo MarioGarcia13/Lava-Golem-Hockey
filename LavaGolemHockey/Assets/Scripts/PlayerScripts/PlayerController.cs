@@ -236,6 +236,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        ResetTackle(playerCollisions);
     }
 
     private IEnumerator ResetTackle(PlayerCollisions playerCollisions)
