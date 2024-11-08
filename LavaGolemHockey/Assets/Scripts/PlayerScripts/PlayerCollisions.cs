@@ -17,6 +17,8 @@ public class PlayerCollisions : MonoBehaviour
     private PlayerController playerController;
     private Rigidbody rb;
     public bool isStunned = false;
+    [SerializeField]
+    private ParticleSystem stunParticle;
 
     public BoxCollider tackleCollider;
 
@@ -96,6 +98,7 @@ public class PlayerCollisions : MonoBehaviour
     private IEnumerator StunPlayer()
     {
         isStunned = true;
+        stunParticle.Play();
         yield return new WaitForSeconds(stunTime);
         isStunned = false;
     }
