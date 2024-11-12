@@ -237,6 +237,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }*/
+        PlayerCollisions playerCollision = playerRigidbody.GetComponent<PlayerCollisions>();
+        if (playerCollision.isStunned)
+            return;
+
         PlayerCollisions playerCollisions = player.GetComponent<PlayerCollisions>();
         if (!playerCollisions.hasPuck)
         {
