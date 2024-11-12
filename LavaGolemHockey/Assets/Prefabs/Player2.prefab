@@ -211,6 +211,8 @@ MonoBehaviour:
   maxSpeed: 40
   moveForce: 8000
   rotationSpeed: 100
+  StunInputParticleLeft: {fileID: 5326303400042682095}
+  StunInputParticleRight: {fileID: 3035919721392809659}
 --- !u!114 &4694414379476358757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3432,6 +3434,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed554093b5b3ed84e973c37113f736b5, type: 3}
+--- !u!198 &3035919721392809659 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1265518667115295522, guid: ed554093b5b3ed84e973c37113f736b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 4301437247656351129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9069937189542987528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5075316754723394193, guid: ed554093b5b3ed84e973c37113f736b5,
@@ -3509,6 +3517,12 @@ PrefabInstance:
 --- !u!4 &2167910991358588764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5075316754723394193, guid: ed554093b5b3ed84e973c37113f736b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6375639382996002253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5326303400042682095 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1265518667115295522, guid: ed554093b5b3ed84e973c37113f736b5,
     type: 3}
   m_PrefabInstance: {fileID: 6375639382996002253}
   m_PrefabAsset: {fileID: 0}

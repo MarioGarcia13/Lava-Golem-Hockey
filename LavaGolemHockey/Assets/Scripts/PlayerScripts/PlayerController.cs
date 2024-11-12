@@ -47,13 +47,19 @@ public class PlayerController : MonoBehaviour
     private Coroutine passCoroutine;
     private bool canControl = false;
 
+    //Particle Effect on Input\
+    [SerializeField]
+    private ParticleSystem StunInputParticleLeft;
+    [SerializeField]
+    private ParticleSystem StunInputParticleRight;
+
     /*private Vector3 leftPlayerInitialPosition;
     private Vector3 rightPlayerInitialPosition;
 
     private Vector3 p2LeftPlayerInitialPosition;
     private Vector3 p2RightPlayerInitialPosition;*/
 
-    
+
 
     private void Awake()
     {/*
@@ -333,6 +339,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                StunInputParticleLeft.Play();
                 TacklePlayer(leftRB, leftPlayer);
             }
         }
@@ -348,6 +355,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                StunInputParticleRight.Play();
                 TacklePlayer(rightRB, rightPlayer);
             }
         }
