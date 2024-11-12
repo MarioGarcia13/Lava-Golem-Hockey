@@ -266,6 +266,17 @@ public class PlayerController : MonoBehaviour
         playerCollisions.tackleCollider.enabled = false;
     }
 
+    private IEnumerator ResetTackleParticleRight(PlayerCollisions playerCollisions)
+    {
+        StunInputParticleRight.Play();
+        yield return new WaitForSeconds(tackleResetTime);
+    }
+    private IEnumerator ResetTackleParticleLeft(PlayerCollisions playerCollisions)
+    {
+        StunInputParticleLeft.Play();
+        yield return new WaitForSeconds(tackleResetTime);
+    }
+
     private IEnumerator HandlePass(GameObject passer, GameObject receiver, Transform puckPosition)
     {
         Vector3 directionToReceiver = (receiver.transform.position - passer.transform.position).normalized;
@@ -339,8 +350,9 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                StunInputParticleLeft.Play();
+                StartCoroutine(ResetTackleParticleLeft(playerCollisions));
                 TacklePlayer(leftRB, leftPlayer);
+                
             }
         }
     }
@@ -355,8 +367,9 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                StunInputParticleRight.Play();
+                StartCoroutine(ResetTackleParticleRight(playerCollisions));
                 TacklePlayer(rightRB, rightPlayer);
+
             }
         }
     }
