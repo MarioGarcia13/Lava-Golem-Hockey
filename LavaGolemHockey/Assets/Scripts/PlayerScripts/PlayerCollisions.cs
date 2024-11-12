@@ -48,6 +48,8 @@ public class PlayerCollisions : MonoBehaviour
         {
             ResetPlayer();
         }
+        //canControl = (newState == GameStateManager.GameState.Ready);
+
     }
 
     private void OnTriggerEnter(Collider other)
