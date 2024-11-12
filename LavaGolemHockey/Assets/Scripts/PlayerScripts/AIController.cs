@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
-public class PlayerController : MonoBehaviour
+public class AIController : MonoBehaviour
 {
     //Input Variables
     private InputActionAsset inputAsset;
@@ -21,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public GameObject rightPlayer;
     public Transform rightPuckPos;
     public Rigidbody rightRB;
-    //public BoxCollider tackleCollider;
 
     [Range(0f, 3f)]
     public float tackleResetTime = 0.5f;
@@ -53,7 +50,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 p2LeftPlayerInitialPosition;
     private Vector3 p2RightPlayerInitialPosition;*/
 
-    
+
 
     private void Awake()
     {/*
@@ -62,8 +59,8 @@ public class PlayerController : MonoBehaviour
         */
         /*leftRB = leftPlayer.GetComponent<Rigidbody>();
         rightRB = rightPlayer.GetComponent<Rigidbody>();*/
-        inputAsset = this.GetComponent<PlayerInput>().actions;
-        player = inputAsset.FindActionMap("PlayerControls");
+        //inputAsset = this.GetComponent<PlayerInput>().actions;
+        //player = inputAsset.FindActionMap("PlayerControls");
 
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
 
@@ -89,7 +86,7 @@ public class PlayerController : MonoBehaviour
         // Reset positions
         /*leftRB.position = leftPlayerInitialPosition;
         rightRB.position = rightPlayerInitialPosition;*/
-        
+
 
         // Reset velocities
         leftRB.velocity = Vector3.zero;
@@ -112,7 +109,7 @@ public class PlayerController : MonoBehaviour
         canControl = (newState == GameStateManager.GameState.Ready);
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         moveLeft = player.FindAction("LSMove");
         moveRight = player.FindAction("RSMove");
@@ -122,7 +119,8 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         player.Disable();
-    }
+    }*/
+
     private void FixedUpdate()
     {
         if (canControl)
@@ -134,7 +132,7 @@ public class PlayerController : MonoBehaviour
     public void UpdatePuckStatus(PlayerCollisions player)
     {
         if (player.gameObject == leftPlayer)
-        { 
+        {
             leftPlayerHasPuck = player.hasPuck;
         }
         else if (player.gameObject == rightPlayer)
@@ -219,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
     private void TacklePlayer(Rigidbody playerRigidbody, GameObject player)
     {
-        /*PlayerCollisions playerCollisions = player.GetComponent<PlayerCollisions>();
+        PlayerCollisions playerCollisions = player.GetComponent<PlayerCollisions>();
         if (!playerCollisions.hasPuck)
         {
             playerCollisions.isTackling = true;
@@ -236,22 +234,13 @@ public class PlayerController : MonoBehaviour
                     tackledPlayer.GetTackled(lungeDirection * lungeForce);
                 }
             }
-        }*/
-        PlayerCollisions playerCollisions = player.GetComponent<PlayerCollisions>();
-        if (!playerCollisions.hasPuck)
-        {
-            playerCollisions.isTackling = true;
-            playerCollisions.tackleCollider.enabled = true;
-            Vector3 lungeDirection = playerRigidbody.transform.forward;
-            playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
-            StartCoroutine(ResetTackle(playerCollisions));
         }
-        //ResetTackle(playerCollisions);
+        ResetTackle(playerCollisions);
     }
 
     private IEnumerator ResetTackle(PlayerCollisions playerCollisions)
     {
-        yield return new WaitForSeconds(tackleResetTime); 
+        yield return new WaitForSeconds(tackleResetTime);
         playerCollisions.isTackling = false;
         playerCollisions.tackleCollider.enabled = false;
     }
@@ -265,9 +254,9 @@ public class PlayerController : MonoBehaviour
         while (Quaternion.Angle(passer.transform.rotation, targetRotation) > 0.1f)
         {
             passer.transform.rotation = Quaternion.Slerp(passer.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-            yield return null; 
+            yield return null;
         }
-       
+
         if (passer == leftPlayer)
         {
             leftPlayerHasPuck = false;
@@ -287,7 +276,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnLSMove(InputAction.CallbackContext ctx)
+    /*public void OnLSMove(InputAction.CallbackContext ctx)
     {
         if (canControl)
         {
@@ -347,5 +336,5 @@ public class PlayerController : MonoBehaviour
                 TacklePlayer(rightRB, rightPlayer);
             }
         }
-    }
+    }*/
 }
