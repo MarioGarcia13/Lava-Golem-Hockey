@@ -45,6 +45,10 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         checkScene = FindObjectOfType<CheckScene>();
+        if (AISpawn == null || checkScene == null)
+        {
+            return;
+        }
     }
 
     private void OnEnable()
@@ -63,10 +67,13 @@ public class PlayerManager : MonoBehaviour
         player.transform.position = startingPoints[players.Count - 1].position;
         singlePlayerTest.SetActive(true);
 
-        if (checkScene.GetCurrentScene() == 2)
+        if (checkScene != null)
         {
-            Debug.Log("test");
-            Instantiate(aiPlayerPrefab, AISpawn);
+            if (checkScene.GetCurrentScene() == 2)
+            {
+                Debug.Log("test");
+                Instantiate(aiPlayerPrefab, AISpawn);
+            }
         }
 
         if (players.Count == 1)
