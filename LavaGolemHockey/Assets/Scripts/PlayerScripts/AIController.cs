@@ -41,7 +41,7 @@ public class AIController : MonoBehaviour
     private Vector2 movementInputLeft;
     private Vector2 movementInputRight;
 
-    private Coroutine passCoroutine;
+    //private Coroutine passCoroutine;
     private bool canControl = false;
 
     /*private Vector3 leftPlayerInitialPosition;
@@ -272,7 +272,7 @@ public class AIController : MonoBehaviour
 
         var instance = Instantiate(puckPrefab, puckPosition.position, Quaternion.identity);
         instance.GetComponent<Rigidbody>().AddForce(directionToReceiver * 80, ForceMode.Impulse);
-        passCoroutine = null;
+        //passCoroutine = null;
     }
 
 

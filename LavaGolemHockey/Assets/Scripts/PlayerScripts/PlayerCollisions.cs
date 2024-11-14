@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
+    public bool isAI = false;
+
     public bool isTackling = false;
     public bool hasPuck = false;
     public GameObject puckVisual;
@@ -15,6 +17,7 @@ public class PlayerCollisions : MonoBehaviour
 
     private Vector3 initialPosition;
     private PlayerController playerController;
+    private AIController aiController;
     private Rigidbody rb;
     public bool isStunned = false;
     [SerializeField]
@@ -25,7 +28,15 @@ public class PlayerCollisions : MonoBehaviour
     private void Awake()
     {
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
-        playerController = transform.parent.GetComponent<PlayerController>();
+        if (isAI)
+        {
+            aiController = transform.parent.GetComponent<AIController>();
+        }
+        else
+        {
+            playerController = transform.parent.GetComponent<PlayerController>();
+
+        }
         rb = GetComponent<Rigidbody>();
     }
 
@@ -74,7 +85,14 @@ public class PlayerCollisions : MonoBehaviour
         hasPuck = true;
         puckVisual.SetActive(true);
         Destroy(puck);
-        playerController.UpdatePuckStatus(this);
+        if (isAI)
+        {
+            aiController.UpdatePuckStatus(this);    
+        }
+        else
+        {
+            playerController.UpdatePuckStatus(this);
+        }
     }
 
     private void TacklePlayer(PlayerCollisions tackledPlayer)
@@ -93,7 +111,14 @@ public class PlayerCollisions : MonoBehaviour
             hasPuck = false;
             puckVisual.SetActive(false);
             Instantiate(puckPrefab, transform.position, Quaternion.identity);
-            playerController.UpdatePuckStatus(this);
+            if (isAI)
+            {
+                aiController.UpdatePuckStatus(this);
+            }
+            else
+            {
+                playerController.UpdatePuckStatus(this);
+            }
         }
     }
 

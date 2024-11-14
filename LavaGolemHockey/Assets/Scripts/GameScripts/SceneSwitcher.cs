@@ -87,4 +87,6 @@ public class SceneSwitcher : MonoBehaviour
         WinScreenP2.SetActive(false);   
         SceneManager.LoadScene(0);
     }
+
+    
 }

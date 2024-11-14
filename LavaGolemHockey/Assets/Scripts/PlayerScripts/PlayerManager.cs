@@ -13,11 +13,15 @@ public class PlayerManager : MonoBehaviour
     private PlayerInputManager playerInputManager;
     public Transform P1Spawn;
     public Transform P2Spawn;
+    public Transform AISpawn;
 
     public GameObject player1Prefab;
     public GameObject player2Prefab;
+    public GameObject aiPlayerPrefab;
 
     public GameObject singlePlayerTest;
+
+    public CheckScene checkScene;
 
     private void Awake()
     {
@@ -38,6 +42,11 @@ public class PlayerManager : MonoBehaviour
         playerInputManager.playerPrefab = player1Prefab;
     }
 
+    private void Start()
+    {
+        checkScene = FindObjectOfType<CheckScene>();
+    }
+
     private void OnEnable()
     {
         playerInputManager.onPlayerJoined += AddPlayer;
@@ -53,6 +62,12 @@ public class PlayerManager : MonoBehaviour
         players.Add(player);
         player.transform.position = startingPoints[players.Count - 1].position;
         singlePlayerTest.SetActive(true);
+
+        if (checkScene.GetCurrentScene() == 2)
+        {
+            Debug.Log("test");
+            Instantiate(aiPlayerPrefab, AISpawn);
+        }
 
         if (players.Count == 1)
         {

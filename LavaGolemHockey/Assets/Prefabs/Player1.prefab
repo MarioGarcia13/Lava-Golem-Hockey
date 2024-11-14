@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f7694996bedbf4b97b21ae93d3bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAI: 0
   isTackling: 0
   hasPuck: 0
   puckVisual: {fileID: 3433209897218148013}
@@ -1111,6 +1112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f7694996bedbf4b97b21ae93d3bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAI: 0
   isTackling: 0
   hasPuck: 0
   puckVisual: {fileID: 3130086865763427958}
@@ -1530,6 +1532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f7694996bedbf4b97b21ae93d3bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAI: 0
   isTackling: 0
   hasPuck: 0
   puckVisual: {fileID: 6552029350703002948}
@@ -2613,6 +2616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f7694996bedbf4b97b21ae93d3bf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAI: 0
   isTackling: 0
   hasPuck: 0
   puckVisual: {fileID: 6552029350703002948}
