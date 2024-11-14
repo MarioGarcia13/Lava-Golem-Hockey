@@ -47,11 +47,13 @@ public class PlayerController : MonoBehaviour
     private Coroutine passCoroutine;
     private bool canControl = false;
 
-    //Particle Effect on Input\
+    //Particle Effect on Input
     [SerializeField]
     private ParticleSystem StunInputParticleLeft;
     [SerializeField]
     private ParticleSystem StunInputParticleRight;
+    private bool canPlayLeftParticle;
+    private bool canPlayRightParticle;
 
     /*private Vector3 leftPlayerInitialPosition;
     private Vector3 rightPlayerInitialPosition;
@@ -255,6 +257,11 @@ public class PlayerController : MonoBehaviour
             Vector3 lungeDirection = playerRigidbody.transform.forward;
             playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
             StartCoroutine(ResetTackle(playerCollisions));
+
+            //Tackle Particle for left player
+            //StunInputParticleLeft.Play();
+            //Tackle particle for right player
+            //StunInputParticleRight.Play();
         }
         //ResetTackle(playerCollisions);
     }
@@ -269,13 +276,18 @@ public class PlayerController : MonoBehaviour
     private IEnumerator ResetTackleParticleRight(PlayerCollisions playerCollisions)
     {
         StunInputParticleRight.Play();
+        canPlayRightParticle = false;
         yield return new WaitForSeconds(tackleResetTime);
+        canPlayRightParticle = true;
     }
     private IEnumerator ResetTackleParticleLeft(PlayerCollisions playerCollisions)
     {
         StunInputParticleLeft.Play();
+        canPlayLeftParticle = false;
         yield return new WaitForSeconds(tackleResetTime);
+        canPlayLeftParticle = true;
     }
+    
 
     private IEnumerator HandlePass(GameObject passer, GameObject receiver, Transform puckPosition)
     {
@@ -369,7 +381,6 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(ResetTackleParticleRight(playerCollisions));
                 TacklePlayer(rightRB, rightPlayer);
-
             }
         }
     }
