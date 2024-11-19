@@ -196,6 +196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a9296a061fd244bae8af11c6f81280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  netLocation: {fileID: 0}
+  targetLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   leftPlayer: {fileID: 4749864437161639683}
   leftPuckPos: {fileID: 7190630954413737440}
   leftRB: {fileID: 5267906282642049355}
@@ -207,9 +212,9 @@ MonoBehaviour:
     type: 3}
   leftPlayerHasPuck: 0
   rightPlayerHasPuck: 0
-  maxSpeed: 10
-  moveForce: 1000
-  rotationSpeed: 10
+  maxSpeed: 15
+  moveForce: 1500
+  rotationSpeed: 100
 --- !u!1 &1084415411128558585
 GameObject:
   m_ObjectHideFlags: 0

@@ -1869,7 +1869,7 @@ MonoBehaviour:
   rightPlayer: {fileID: 2689874426414573704}
   rightPuckPos: {fileID: 7510019545428951318}
   rightRB: {fileID: 3705697667521676400}
-  tackleResetTime: 0
+  tackleResetTime: 0.5
   puckPrefab: {fileID: 143487984517241902, guid: ffcb3717021f47741ad1ede4af8364f3,
     type: 3}
   leftPlayerHasPuck: 0
