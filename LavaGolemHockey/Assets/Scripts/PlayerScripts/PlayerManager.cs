@@ -71,7 +71,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (checkScene.GetCurrentScene() == 2)
             {
-                Debug.Log("test");
+                //Debug.Log("test");
                 Instantiate(aiPlayerPrefab, AISpawn);
             }
         }

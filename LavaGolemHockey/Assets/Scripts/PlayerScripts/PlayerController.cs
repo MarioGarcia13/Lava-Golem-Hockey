@@ -181,12 +181,12 @@ public class PlayerController : MonoBehaviour
 
     public void CollisionDetected(PlayerCollisions playerCollision)
     {
-        Debug.Log("Collided");
+        //Debug.Log("Collided");
         if (Vector3.Distance(leftPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
             leftRB.velocity = leftRB.velocity / 2;
             leftPlayerHasPuck = true;
-            Debug.Log("left player has puck");
+            //Debug.Log("left player has puck");
             rightPlayerHasPuck = false;
         }
         else if (Vector3.Distance(rightPlayer.transform.position, playerCollision.transform.position) < 2f)
@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
             //reduce velocity
             rightRB.velocity = rightRB.velocity / 2;
             rightPlayerHasPuck = true;
-            Debug.Log("right player has puck");
+            //Debug.Log("right player has puck");
             leftPlayerHasPuck = false;
         }
     }
@@ -263,7 +263,7 @@ public class PlayerController : MonoBehaviour
             //Tackle particle for right player
             //StunInputParticleRight.Play();
         }
-        //ResetTackle(playerCollisions);
+        StartCoroutine(ResetTackle(playerCollisions));
     }
 
     private IEnumerator ResetTackle(PlayerCollisions playerCollisions)

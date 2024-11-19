@@ -256,12 +256,12 @@ public class AIController : MonoBehaviour
 
     public void CollisionDetected(PlayerCollisions playerCollision)
     {
-        Debug.Log("Collided");
+        //Debug.Log("Collided");
         if (Vector3.Distance(leftPlayer.transform.position, playerCollision.transform.position) < 2f)
         {
             leftRB.velocity = leftRB.velocity / 10;
             leftPlayerHasPuck = true;
-            Debug.Log("left player has puck");
+            //Debug.Log("left player has puck");
             rightPlayerHasPuck = false;
         }
         else if (Vector3.Distance(rightPlayer.transform.position, playerCollision.transform.position) < 2f)
@@ -269,7 +269,7 @@ public class AIController : MonoBehaviour
             //reduce velocity
             rightRB.velocity = rightRB.velocity / 10;
             rightPlayerHasPuck = true;
-            Debug.Log("right player has puck");
+            //Debug.Log("right player has puck");
             leftPlayerHasPuck = false;
         }
     }
@@ -300,7 +300,7 @@ public class AIController : MonoBehaviour
         }
     }
 
-    private void TacklePlayer(Rigidbody playerRigidbody, GameObject player)
+    public void TacklePlayer(Rigidbody playerRigidbody, GameObject player)
     {
         PlayerCollisions playerCollisions = player.GetComponent<PlayerCollisions>();
         if (!playerCollisions.hasPuck)
@@ -325,6 +325,7 @@ public class AIController : MonoBehaviour
 
     private IEnumerator ResetTackle(PlayerCollisions playerCollisions)
     {
+        playerCollisions.isTackling = true;
         yield return new WaitForSeconds(tackleResetTime);
         playerCollisions.isTackling = false;
         playerCollisions.tackleCollider.enabled = false;

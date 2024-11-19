@@ -156,7 +156,7 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (hasPuck)
         {
-            Debug.Log("removing puck");
+            //Debug.Log("removing puck");
             hasPuck = false;
             puckVisual.SetActive(false);
         }

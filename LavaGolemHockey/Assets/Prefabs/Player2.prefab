@@ -1706,7 +1706,7 @@ GameObject:
   - component: {fileID: 5267906282642049355}
   m_Layer: 9
   m_Name: LStick
-  m_TagString: p2L
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2325,7 +2325,7 @@ GameObject:
   - component: {fileID: 344821317613571082}
   m_Layer: 0
   m_Name: RStick
-  m_TagString: p2R
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

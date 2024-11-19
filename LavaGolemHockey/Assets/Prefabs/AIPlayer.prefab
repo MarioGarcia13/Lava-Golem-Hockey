@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a9296a061fd244bae8af11c6f81280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootLocation: {fileID: 0}
   netLocation: {fileID: 0}
   targetLocations:
   - {fileID: 0}
@@ -207,12 +208,12 @@ MonoBehaviour:
   rightPlayer: {fileID: 6477345190719916016}
   rightPuckPos: {fileID: 7262518822554159224}
   rightRB: {fileID: 344821317613571082}
-  tackleResetTime: 0.5
+  tackleResetTime: 2
   puckPrefab: {fileID: 143487984517241902, guid: ffcb3717021f47741ad1ede4af8364f3,
     type: 3}
   leftPlayerHasPuck: 0
   rightPlayerHasPuck: 0
-  maxSpeed: 15
+  maxSpeed: 35
   moveForce: 1500
   rotationSpeed: 100
 --- !u!1 &1084415411128558585
@@ -464,6 +465,72 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2007784614901510229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8813157414447626566}
+  - component: {fileID: 2217344777464511622}
+  - component: {fileID: 3740535821255514288}
+  m_Layer: 7
+  m_Name: TackleTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8813157414447626566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007784614901510229}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000014603136}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3033709580134904049}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2217344777464511622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007784614901510229}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 36.762936, y: 14.043759, z: 35.928986}
+  m_Center: {x: -0.32438242, y: 11.882705, z: -0.5352199}
+--- !u!114 &3740535821255514288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007784614901510229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7893b4893480abc4a867c0e20565b138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2050817698390494894
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,8 +582,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 37.57213, y: 27.328365, z: 37.394566}
-  m_Center: {x: -0.03581246, y: 13.164184, z: 18.197271}
+  m_Size: {x: 37.57213, y: 27.328365, z: 18.711882}
+  m_Center: {x: -0.035812456, y: 13.164184, z: 8.855894}
 --- !u!1 &2107169548290574592
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +941,72 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2733246634364259590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1029054618286617361}
+  - component: {fileID: 8628979020075012400}
+  - component: {fileID: 6941602376613170165}
+  m_Layer: 7
+  m_Name: TackleTrigger (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1029054618286617361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733246634364259590}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000014305114}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5751838364633780888}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8628979020075012400
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733246634364259590}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 36.762936, y: 14.043759, z: 35.928986}
+  m_Center: {x: -0.32438242, y: 11.882705, z: -0.5352199}
+--- !u!114 &6941602376613170165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733246634364259590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7893b4893480abc4a867c0e20565b138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2792395450324790062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,7 +1710,7 @@ GameObject:
   - component: {fileID: 5267906282642049355}
   m_Layer: 9
   m_Name: LStick
-  m_TagString: p2L
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1608,6 +1741,7 @@ Transform:
   - {fileID: 1762160427868944701}
   - {fileID: 7488073700314664030}
   - {fileID: 7986384075906507012}
+  - {fileID: 8813157414447626566}
   m_Father: {fileID: 3408771383831962354}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!136 &5554823677211438415
@@ -2097,8 +2231,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 37.57213, y: 27.328365, z: 37.394566}
-  m_Center: {x: -0.03581246, y: 13.164184, z: 18.197271}
+  m_Size: {x: 37.57213, y: 27.328365, z: 18.372976}
+  m_Center: {x: -0.035812456, y: 13.164184, z: 8.686464}
 --- !u!1 &6270932292039256646
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,7 +2330,7 @@ GameObject:
   - component: {fileID: 344821317613571082}
   m_Layer: 0
   m_Name: RStick
-  m_TagString: p2R
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2227,6 +2361,7 @@ Transform:
   - {fileID: 1145997242130572357}
   - {fileID: 7806459652230828741}
   - {fileID: 1230366690492843838}
+  - {fileID: 1029054618286617361}
   m_Father: {fileID: 3408771383831962354}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!136 &15337717329308667
