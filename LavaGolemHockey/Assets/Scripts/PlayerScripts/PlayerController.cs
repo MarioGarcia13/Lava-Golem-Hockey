@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public AudioSource puckShootSound;
     public bool canPass = true;
 
     //Input Variables
@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+
         leftRB = leftPlayer.GetComponent<Rigidbody>();
         rightRB = rightPlayer.GetComponent<Rigidbody>();
     }
@@ -346,6 +347,8 @@ public class PlayerController : MonoBehaviour
         {
 
             passCoroutine = StartCoroutine(HandlePass(leftPlayer, rightPlayer, leftPuckPos));
+            puckShootSound.Play();
+
         }
     }
 
@@ -354,6 +357,8 @@ public class PlayerController : MonoBehaviour
         if (canControl && rightPlayerHasPuck && passCoroutine == null && canPass)
         {
             passCoroutine = StartCoroutine(HandlePass(rightPlayer, leftPlayer, rightPuckPos));
+            puckShootSound.Play();
+
         }
     }
 
@@ -363,6 +368,7 @@ public class PlayerController : MonoBehaviour
         {
             if (leftPlayerHasPuck)
             {
+                puckShootSound.Play();
                 ShootPuck(leftPlayer, leftPuckPos);
                 canPass = true;
             }
@@ -382,6 +388,7 @@ public class PlayerController : MonoBehaviour
         {
             if (rightPlayerHasPuck)
             {
+                puckShootSound.Play();
                 ShootPuck(rightPlayer, rightPuckPos);
                 canPass = true;
             }

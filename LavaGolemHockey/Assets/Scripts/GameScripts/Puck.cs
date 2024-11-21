@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Puck : MonoBehaviour
 {
+    public AudioSource wallClack;
+
     //ScoreBoard Variables
     public static bool goal1Scored = false;
     public static bool goal2Scored = false;
@@ -52,6 +54,11 @@ public class Puck : MonoBehaviour
             nextRound = true;
             GameStateManager.Instance.SetGameState(GameStateManager.GameState.NewRound);
             //StartCoroutine(delayTimer());
+        }
+
+        if (other.gameObject.tag == "Wall")
+        {
+            wallClack.Play();
         }
     }
 
