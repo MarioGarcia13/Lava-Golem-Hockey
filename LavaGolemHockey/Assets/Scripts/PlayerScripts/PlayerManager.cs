@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
     {
         players.Add(player);
         player.transform.position = startingPoints[players.Count - 1].position;
-        singlePlayerTest.SetActive(true);
+        //singlePlayerTest.SetActive(true);
 
         if (checkScene != null)
         {
@@ -73,6 +73,7 @@ public class PlayerManager : MonoBehaviour
             {
                 //Debug.Log("test");
                 Instantiate(aiPlayerPrefab, AISpawn);
+                GameStateManager.Instance.SetGameState(GameStateManager.GameState.Ready);
             }
         }
 

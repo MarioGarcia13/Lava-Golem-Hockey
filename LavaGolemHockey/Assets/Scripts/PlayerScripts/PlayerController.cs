@@ -7,6 +7,9 @@ using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public bool canPass = true;
+
     //Input Variables
     private InputActionAsset inputAsset;
     private InputActionMap player;
@@ -201,6 +204,7 @@ public class PlayerController : MonoBehaviour
 
     private void ShootPuck(GameObject player, Transform puckPosition)
     {
+        canPass = false;
         // Instantiate the puck at the designated position
         var instance = Instantiate(puckPrefab, puckPosition.position, Quaternion.identity);
 
@@ -291,32 +295,32 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator HandlePass(GameObject passer, GameObject receiver, Transform puckPosition)
     {
-        Vector3 directionToReceiver = (receiver.transform.position - passer.transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(directionToReceiver);
-        float rotationSpeed = 40f;
+            Vector3 directionToReceiver = (receiver.transform.position - passer.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToReceiver);
+            float rotationSpeed = 40f;
 
-        while (Quaternion.Angle(passer.transform.rotation, targetRotation) > 0.1f)
-        {
-            passer.transform.rotation = Quaternion.Slerp(passer.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-            yield return null; 
-        }
-       
-        if (passer == leftPlayer)
-        {
-            leftPlayerHasPuck = false;
-            //Debug.Log("Left player passed");
-            leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
-        }
-        else if (passer == rightPlayer)
-        {
-            rightPlayerHasPuck = false;
-            //Debug.Log("Right player passed");
-            rightPlayer.GetComponent<PlayerCollisions>().RemovePuck();
-        }
+            while (Quaternion.Angle(passer.transform.rotation, targetRotation) > 0.1f)
+            {
+                passer.transform.rotation = Quaternion.Slerp(passer.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+                yield return null;
+            }
 
-        var instance = Instantiate(puckPrefab, puckPosition.position, Quaternion.identity);
-        instance.GetComponent<Rigidbody>().AddForce(directionToReceiver * 80, ForceMode.Impulse);
-        passCoroutine = null;
+            if (passer == leftPlayer && leftPlayerHasPuck)
+            {
+                leftPlayerHasPuck = false;
+                //Debug.Log("Left player passed");
+                leftPlayer.GetComponent<PlayerCollisions>().RemovePuck();
+            }
+            else if (passer == rightPlayer && rightPlayerHasPuck)
+            {
+                rightPlayerHasPuck = false;
+                //Debug.Log("Right player passed");
+                rightPlayer.GetComponent<PlayerCollisions>().RemovePuck();
+            }
+
+            var instance = Instantiate(puckPrefab, puckPosition.position, Quaternion.identity);
+            instance.GetComponent<Rigidbody>().AddForce(directionToReceiver * 80, ForceMode.Impulse);
+            passCoroutine = null;
     }
 
 
@@ -338,15 +342,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftPass(InputAction.CallbackContext ctx)
     {
-        if (canControl && leftPlayerHasPuck && passCoroutine == null)
+        if (canControl && leftPlayerHasPuck && passCoroutine == null && canPass)
         {
+
             passCoroutine = StartCoroutine(HandlePass(leftPlayer, rightPlayer, leftPuckPos));
         }
     }
 
     public void OnRightPass(InputAction.CallbackContext ctx)
     {
-        if (canControl && rightPlayerHasPuck && passCoroutine == null)
+        if (canControl && rightPlayerHasPuck && passCoroutine == null && canPass)
         {
             passCoroutine = StartCoroutine(HandlePass(rightPlayer, leftPlayer, rightPuckPos));
         }
@@ -359,6 +364,7 @@ public class PlayerController : MonoBehaviour
             if (leftPlayerHasPuck)
             {
                 ShootPuck(leftPlayer, leftPuckPos);
+                canPass = true;
             }
             else
             {
@@ -366,6 +372,7 @@ public class PlayerController : MonoBehaviour
                 TacklePlayer(leftRB, leftPlayer);
                 
             }
+            
         }
     }
 
@@ -376,12 +383,14 @@ public class PlayerController : MonoBehaviour
             if (rightPlayerHasPuck)
             {
                 ShootPuck(rightPlayer, rightPuckPos);
+                canPass = true;
             }
             else
             {
                 StartCoroutine(ResetTackleParticleRight(playerCollisions));
                 TacklePlayer(rightRB, rightPlayer);
             }
+            
         }
     }
 }
