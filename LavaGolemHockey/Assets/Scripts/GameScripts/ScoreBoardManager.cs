@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem.XR.Haptics;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 public class ScoreBoardManager : MonoBehaviour
 {
     //public static ScoreBoardManager instance;
@@ -20,6 +21,11 @@ public class ScoreBoardManager : MonoBehaviour
     public TMP_Text RoundNum;
     [SerializeField]
     public TMP_Text TimerCountdown;
+    [SerializeField]
+    public AudioSource scoringSource;
+    [SerializeField]
+    public AudioClip scoringClip;
+    
 
     //Score Variables
     public int score1 = 0;
