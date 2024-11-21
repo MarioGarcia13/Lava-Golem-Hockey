@@ -87,6 +87,7 @@ public class PlayerManager : MonoBehaviour
                 //Debug.Log("test");
                 Instantiate(aiPlayerPrefab, AISpawn);
                 StartCoroutine(DelayGameStateReady());
+                ControlsUI.playersConnected = true;
             }
         }
 
