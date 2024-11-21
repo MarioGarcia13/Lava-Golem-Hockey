@@ -15,6 +15,7 @@ TagManager:
   - p2L
   - p2R
   - Follow
+  - Wall
   layers:
   - Default
   - TransparentFX

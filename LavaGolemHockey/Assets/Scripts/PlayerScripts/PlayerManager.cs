@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -59,10 +60,22 @@ public class PlayerManager : MonoBehaviour
     private void OnDisable()
     {
         playerInputManager.onPlayerJoined -= AddPlayer;
+        ControlsUI.playersConnected = false;
+        ControlsUI.player1Joined = false;
+        ControlsUI.player2Joined = false;
     }
 
     public void AddPlayer(PlayerInput player)
     {
+        if (ControlsUI.player1Joined)
+        {
+            ControlsUI.player2Joined = true;
+        }
+        else
+        {
+            ControlsUI.player1Joined = true;
+        }
+
         players.Add(player);
         player.transform.position = startingPoints[players.Count - 1].position;
         //singlePlayerTest.SetActive(true);
@@ -82,10 +95,18 @@ public class PlayerManager : MonoBehaviour
             playerInputManager.playerPrefab = player2Prefab;
         }
         else if (players.Count == 2)
-        { 
-            GameStateManager.Instance.SetGameState(GameStateManager.GameState.Ready);
+        {
+            StartCoroutine(DelayGameStateReady());
+            ControlsUI.playersConnected = true;
         }
     }
+
+    IEnumerator DelayGameStateReady()
+    {
+        yield return new WaitForSeconds(2f);
+        GameStateManager.Instance.SetGameState(GameStateManager.GameState.Ready);
+    }
+
 
     public void ResetPlayerPositions()
     {

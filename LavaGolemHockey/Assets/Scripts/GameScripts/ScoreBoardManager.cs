@@ -38,7 +38,6 @@ public class ScoreBoardManager : MonoBehaviour
     public float timeRemaining;
     [Range(0f, 400f)]
     public float startTime = 15f;
-
     public bool goalScored = false;
 
     private void Start()
@@ -54,6 +53,7 @@ public class ScoreBoardManager : MonoBehaviour
         {
             timeRemaining = startTime;
         }
+        
     }
 
     private void OnDestroy()
@@ -88,14 +88,17 @@ public class ScoreBoardManager : MonoBehaviour
             score2 = 0;
         }
 
-        if (timeRemaining > 0)
+        if (GameStateManager.Instance.CurrentState == GameStateManager.GameState.Ready)
         {
-            timeRemaining -= Time.deltaTime;
-            UpdateTimerDisplay();
-        }
-        else
-        {
-            RoundEnded();
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                UpdateTimerDisplay();
+            }
+            else
+            {
+                RoundEnded();
+            }
         }
 
         if (goalScored)
