@@ -60,6 +60,12 @@ public class SceneSwitcher : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void SinglePlayer()
+    {
+        HideMenu();
+        SceneManager.LoadScene(2);
+    }
+
     public void ShowWinScreenP1()
     {
         StartCoroutine(P1Timer());
