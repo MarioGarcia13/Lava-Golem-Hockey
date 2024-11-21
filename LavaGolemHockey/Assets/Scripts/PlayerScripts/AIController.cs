@@ -191,7 +191,7 @@ public class AIController : MonoBehaviour
 
         // Check if the player has reached the target location
         float distanceToTarget = Vector3.Distance(playerRigidbody.position, targetPosition);
-        float stoppingDistance = 3f; 
+        float stoppingDistance = 4f; 
 
         if (distanceToTarget <= stoppingDistance)
         {
