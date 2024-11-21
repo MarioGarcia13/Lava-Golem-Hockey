@@ -8224,6 +8224,11 @@ PrefabInstance:
       propertyPath: player1Controller
       value: 
       objectReference: {fileID: 417994426}
+    - target: {fileID: 705211363406782744, guid: 47b44fae3d504e44bbe3c37d0a6859be,
+        type: 3}
+      propertyPath: player2Controller
+      value: 
+      objectReference: {fileID: 417994426}
     - target: {fileID: 749056533036687809, guid: 47b44fae3d504e44bbe3c37d0a6859be,
         type: 3}
       propertyPath: m_IsActive

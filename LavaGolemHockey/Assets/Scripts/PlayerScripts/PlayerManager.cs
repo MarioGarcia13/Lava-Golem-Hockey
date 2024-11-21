@@ -86,7 +86,7 @@ public class PlayerManager : MonoBehaviour
             {
                 //Debug.Log("test");
                 Instantiate(aiPlayerPrefab, AISpawn);
-                GameStateManager.Instance.SetGameState(GameStateManager.GameState.Ready);
+                StartCoroutine(DelayGameStateReady());
             }
         }
 
