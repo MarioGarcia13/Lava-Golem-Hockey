@@ -9586,7 +9586,7 @@ PrefabInstance:
     - target: {fileID: 8851921780400683914, guid: ac9f3df7f85a2cd4a9a901bd067bfd09,
         type: 3}
       propertyPath: m_Volume
-      value: 0.114
+      value: 0.153
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10940,6 +10940,11 @@ PrefabInstance:
       value: ScoreBoard
       objectReference: {fileID: 0}
     - target: {fileID: 5459034718858898918, guid: 47b44fae3d504e44bbe3c37d0a6859be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065111903473388, guid: 47b44fae3d504e44bbe3c37d0a6859be,
         type: 3}
       propertyPath: m_IsActive
       value: 0
