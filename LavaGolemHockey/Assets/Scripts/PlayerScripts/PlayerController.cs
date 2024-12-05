@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 public class PlayerController : MonoBehaviour
 {
     public AudioSource puckShootSound;
+    public AudioSource tackle;
     public bool canPass = true;
 
     //Input Variables
@@ -262,6 +263,7 @@ public class PlayerController : MonoBehaviour
             Vector3 lungeDirection = playerRigidbody.transform.forward;
             playerRigidbody.AddForce(lungeDirection * lungeForce, ForceMode.Impulse);
             StartCoroutine(ResetTackle(playerCollisions));
+            
 
             //Tackle Particle for left player
             //StunInputParticleLeft.Play();
@@ -374,6 +376,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                tackle.Play();
                 StartCoroutine(ResetTackleParticleLeft(playerCollisions));
                 TacklePlayer(leftRB, leftPlayer);
                 
@@ -394,6 +397,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                tackle.Play();
                 StartCoroutine(ResetTackleParticleRight(playerCollisions));
                 TacklePlayer(rightRB, rightPlayer);
             }

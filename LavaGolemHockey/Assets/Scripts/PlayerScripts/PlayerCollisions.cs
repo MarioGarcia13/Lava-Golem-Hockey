@@ -25,6 +25,9 @@ public class PlayerCollisions : MonoBehaviour
 
     public BoxCollider tackleCollider;
 
+    public AudioSource gettingTackled;
+    public AudioSource puckPickUp;
+
     private void Awake()
     {
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;
@@ -77,6 +80,7 @@ public class PlayerCollisions : MonoBehaviour
         if (collision.gameObject.CompareTag("Puck") && !isStunned)
         {
             PickUpPuck(collision.gameObject);
+            puckPickUp.Play();
         }
     }
 
@@ -124,6 +128,7 @@ public class PlayerCollisions : MonoBehaviour
 
     private IEnumerator StunPlayer()
     {
+        gettingTackled.Play();
         isStunned = true;
         stunParticle.Play();
         yield return new WaitForSeconds(stunTime);

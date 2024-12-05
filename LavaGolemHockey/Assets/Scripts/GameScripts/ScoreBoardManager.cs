@@ -23,6 +23,7 @@ public class ScoreBoardManager : MonoBehaviour
     public TMP_Text TimerCountdown;
     [SerializeField]
     public AudioSource scoringSource;
+    public AudioSource crowdCheer;
     
 
     //Score Variables
@@ -107,6 +108,7 @@ public class ScoreBoardManager : MonoBehaviour
         if (Puck.goal1Scored)
         {
             scoringSource.Play();
+            crowdCheer.Play();
             score1++;
             Puck.goal1Scored = false;
         }
@@ -114,6 +116,7 @@ public class ScoreBoardManager : MonoBehaviour
         if (Puck.goal2Scored)
         {
             scoringSource.Play();
+            crowdCheer.Play();
             score2++;
             Puck.goal2Scored = false;
             
