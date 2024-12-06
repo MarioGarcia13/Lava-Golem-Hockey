@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonSelect : MonoBehaviour
 {
-    public bool hasChanged = false;
+    public bool changeOnce = true;
     public Button singlePlayerButton;
     public Button primaryButton;
     // Start is called before the first frame update
@@ -17,10 +17,11 @@ public class ButtonSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hasChanged)
+        if (!primaryButton.IsActive() && changeOnce)
         {
             singlePlayerButton.Select();
-            hasChanged = true;
+            changeOnce = false; 
+            return;
         }
     }
 }
