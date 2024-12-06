@@ -11,17 +11,25 @@ public class ButtonSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (primaryButton == null || singlePlayerButton == null)
+        {
+            return;
+        }
+
         primaryButton.Select();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!primaryButton.IsActive() && changeOnce)
+        if (primaryButton != null || singlePlayerButton != null)
         {
-            singlePlayerButton.Select();
-            changeOnce = false; 
-            return;
+            if (!primaryButton.IsActive() && changeOnce)
+            {
+                singlePlayerButton.Select();
+                changeOnce = false;
+                return;
+            }
         }
     }
 }
