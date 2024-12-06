@@ -76,13 +76,17 @@ public class PlayerManager : MonoBehaviour
             ControlsUI.player1Joined = true;
         }
 
-        players.Add(player);
+        if (GameStateManager.Instance.CurrentState != GameStateManager.GameState.Ready)
+        {
+            players.Add(player);
+        }
+        //players.Add(player);
         player.transform.position = startingPoints[players.Count - 1].position;
         //singlePlayerTest.SetActive(true);
 
         if (checkScene != null)
         {
-            if (checkScene.GetCurrentScene() == 2)
+            if (checkScene.GetCurrentScene() == 2 && GameStateManager.Instance.CurrentState != GameStateManager.GameState.Ready)
             {
                 //Debug.Log("test");
                 Instantiate(aiPlayerPrefab, AISpawn);
