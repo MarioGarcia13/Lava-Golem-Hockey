@@ -182,17 +182,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""955cace4-f80a-4e7a-b9fb-ff094333b3e4"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Join"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""fa1e8dea-acc0-4b83-98cd-9a52a5db0af7"",
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
