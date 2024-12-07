@@ -17,12 +17,16 @@ public class SceneSwitcher : MonoBehaviour
     GameObject WinScreenP1;
     [SerializeField]
     GameObject WinScreenP2;
-
+    [SerializeField]
+    GameObject CreditsUI;
+    
     //buttons
     [SerializeField]
     GameObject StartButton;
     [SerializeField]
-    GameObject ModeSelect;
+    GameObject ModeSelect;/*
+    [SerializeField]
+    GameObject Credits;*/
 
     [Range(0f, 30f)]
     public float WinScreenTime = 30f;
@@ -38,6 +42,15 @@ public class SceneSwitcher : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public void CreditsButton()
+    {
+        CreditsUI.SetActive(true);
+    }
+    public void HideCredits()
+    {
+        CreditsUI.SetActive(false);
     }
 
     public void ShowMenu()

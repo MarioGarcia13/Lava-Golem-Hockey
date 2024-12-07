@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 790924399}
   - component: {fileID: 790924398}
   m_Layer: 5
-  m_Name: MultiplayerButton (1)
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,7 +459,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 392419218}
         m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
-        m_MethodName: GameScene
+        m_MethodName: CreditsButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2110,7 +2110,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 560141949988936488}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392419218}
+        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
+        m_MethodName: HideCredits
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &4052135882529749271
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2841,6 +2853,11 @@ PrefabInstance:
       propertyPath: LGHStart
       value: 
       objectReference: {fileID: 927074971}
+    - target: {fileID: 2836053886379438105, guid: f7e1181dc9c4be141a9f83e1ec702ae0,
+        type: 3}
+      propertyPath: CreditsUI
+      value: 
+      objectReference: {fileID: 500225112206611659}
     - target: {fileID: 2836053886379438105, guid: f7e1181dc9c4be141a9f83e1ec702ae0,
         type: 3}
       propertyPath: ModeSelect
