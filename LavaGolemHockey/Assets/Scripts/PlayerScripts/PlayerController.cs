@@ -59,6 +59,9 @@ public class PlayerController : MonoBehaviour
     private bool canPlayLeftParticle;
     private bool canPlayRightParticle;
 
+    [SerializeField] private float actionCooldown = 2f;
+    private bool isActionCooldown = false;
+
     /*private Vector3 leftPlayerInitialPosition;
     private Vector3 rightPlayerInitialPosition;
 
@@ -345,63 +348,83 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftPass(InputAction.CallbackContext ctx)
     {
-        if (canControl && leftPlayerHasPuck && passCoroutine == null && canPass)
+        if (canControl && leftPlayerHasPuck && passCoroutine == null && canPass && !isActionCooldown)
         {
+            StartCoroutine(ActionWithCooldown(() =>
+            {
+                    passCoroutine = StartCoroutine(HandlePass(leftPlayer, rightPlayer, leftPuckPos));
+                    puckShootSound.Play();
+            }));
 
-            passCoroutine = StartCoroutine(HandlePass(leftPlayer, rightPlayer, leftPuckPos));
-            puckShootSound.Play();
 
         }
     }
 
     public void OnRightPass(InputAction.CallbackContext ctx)
     {
-        if (canControl && rightPlayerHasPuck && passCoroutine == null && canPass)
+        if (canControl && rightPlayerHasPuck && passCoroutine == null && canPass && !isActionCooldown)
         {
-            passCoroutine = StartCoroutine(HandlePass(rightPlayer, leftPlayer, rightPuckPos));
-            puckShootSound.Play();
-
+            StartCoroutine(ActionWithCooldown(() =>
+            {
+                passCoroutine = StartCoroutine(HandlePass(rightPlayer, leftPlayer, rightPuckPos));
+                puckShootSound.Play();
+            }));
         }
     }
 
     public void OnLeftShootTackle(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && canControl)
+        if (ctx.performed && canControl && !isActionCooldown)
         {
-            if (leftPlayerHasPuck)
+            StartCoroutine(ActionWithCooldown(() =>
             {
-                puckShootSound.Play();
-                ShootPuck(leftPlayer, leftPuckPos);
-                canPass = true;
-            }
-            else
-            {
-                tackle.Play();
-                StartCoroutine(ResetTackleParticleLeft(playerCollisions));
-                TacklePlayer(leftRB, leftPlayer);
-                
-            }
-            
+                if (leftPlayerHasPuck)
+                {
+                    puckShootSound.Play();
+                    ShootPuck(leftPlayer, leftPuckPos);
+                    canPass = true;
+                }
+                else
+                {
+                    tackle.Play();
+                    StartCoroutine(ResetTackleParticleLeft(playerCollisions));
+                    TacklePlayer(leftRB, leftPlayer);
+
+                }
+            }));
         }
     }
 
     public void OnRightShootTackle(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && canControl)
+        if (ctx.performed && canControl && !isActionCooldown)
         {
-            if (rightPlayerHasPuck)
+            StartCoroutine(ActionWithCooldown(() =>
             {
-                puckShootSound.Play();
-                ShootPuck(rightPlayer, rightPuckPos);
-                canPass = true;
-            }
-            else
-            {
-                tackle.Play();
-                StartCoroutine(ResetTackleParticleRight(playerCollisions));
-                TacklePlayer(rightRB, rightPlayer);
-            }
-            
+                if (rightPlayerHasPuck)
+                {
+                    puckShootSound.Play();
+                    ShootPuck(rightPlayer, rightPuckPos);
+                    canPass = true;
+                }
+                else
+                {
+                    tackle.Play();
+                    StartCoroutine(ResetTackleParticleRight(playerCollisions));
+                    TacklePlayer(rightRB, rightPlayer);
+                }
+            }));
+        }
+    }
+
+    private IEnumerator ActionWithCooldown(System.Action action)
+    {
+        if (!isActionCooldown)
+        {
+            isActionCooldown = true;
+            action.Invoke();
+            yield return new WaitForSeconds(actionCooldown);
+            isActionCooldown = false;
         }
     }
 }
