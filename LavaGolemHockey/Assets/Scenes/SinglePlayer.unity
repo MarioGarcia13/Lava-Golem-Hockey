@@ -10079,6 +10079,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3241730955149875424, guid: 60a6088b02f8a8c46a7879a227c5bf2c,
+        type: 3}
+      propertyPath: m_AllowJoining
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3241730955149875424, guid: 60a6088b02f8a8c46a7879a227c5bf2c,
+        type: 3}
+      propertyPath: m_JoinBehavior
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3241730955149875424, guid: 60a6088b02f8a8c46a7879a227c5bf2c,
+        type: 3}
+      propertyPath: m_MaxPlayerCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5425948556714293246, guid: 60a6088b02f8a8c46a7879a227c5bf2c,
         type: 3}
       propertyPath: m_LocalPosition.x

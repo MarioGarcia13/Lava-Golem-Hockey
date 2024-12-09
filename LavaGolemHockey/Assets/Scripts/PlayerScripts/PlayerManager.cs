@@ -20,9 +20,11 @@ public class PlayerManager : MonoBehaviour
     public GameObject player2Prefab;
     public GameObject aiPlayerPrefab;
 
-    public GameObject singlePlayerTest;
+    //public GameObject singlePlayerTest;
 
     public CheckScene checkScene;
+
+    //public PlayerJoinBehavior joinBehavior;
 
     private void Awake()
     {
@@ -54,7 +56,9 @@ public class PlayerManager : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInputManager.onPlayerJoined += AddPlayer;
+        
+       playerInputManager.onPlayerJoined += AddPlayer;
+        
     }
 
     private void OnDisable()
@@ -90,8 +94,10 @@ public class PlayerManager : MonoBehaviour
             {
                 //Debug.Log("test");
                 Instantiate(aiPlayerPrefab, AISpawn);
-                StartCoroutine(DelayGameStateReady());
                 ControlsUI.playersConnected = true;
+                
+                StartCoroutine(DelayGameStateReady());
+
             }
         }
 
@@ -104,6 +110,7 @@ public class PlayerManager : MonoBehaviour
             StartCoroutine(DelayGameStateReady());
             ControlsUI.playersConnected = true;
         }
+
     }
 
     IEnumerator DelayGameStateReady()
